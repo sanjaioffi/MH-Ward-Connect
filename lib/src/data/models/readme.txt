@@ -1,0 +1,1 @@
+This folder contains classes that represent the data structures used in your app.

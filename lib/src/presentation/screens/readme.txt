@@ -1,0 +1,1 @@
+ Place the different screens or pages of your app in this folder. Each screen usually has its own folder with its related widgets and logic.

@@ -1,0 +1,1 @@
+This folder includes classes responsible for handling external services like network requests or device-specific features.

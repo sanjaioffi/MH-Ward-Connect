@@ -1,0 +1,1 @@
+This folder contains reusable widgets that are used across multiple screens.

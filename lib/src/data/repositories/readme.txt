@@ -1,0 +1,1 @@
+ Here, you can place classes that manage data retrieval from different sources, such as APIs or databases.
