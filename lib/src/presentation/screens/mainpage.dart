@@ -35,7 +35,9 @@ class MainScreenState extends State<MainScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColor.whatsAppTealGreen,
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          _showOptionsBottomSheet(context);
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
@@ -168,6 +170,73 @@ class MainScreenState extends State<MainScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  void _showOptionsBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      backgroundColor: AppColor.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Post',
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: AppColor.black)),
+                    Icon(Icons.close, color: AppColor.black)
+                  ],
+                ),
+              ),
+              SizedBox(height: 10),
+              _buildOptionTile(Icons.flag_outlined, 'Post a Complaint', () {
+                // Handle post a complaint action
+                Navigator.pop(context); // Close the bottom sheet
+              }),
+              _buildOptionTile(Icons.question_answer_outlined, 'Post a Query',
+                  () {
+                // Handle post a query action
+                Navigator.pop(context); // Close the bottom sheet
+              }),
+              _buildOptionTile(Icons.star_border_outlined, 'Post a Milestone',
+                  () {
+                // Handle post a milestone action
+                Navigator.pop(context); // Close the bottom sheet
+              }),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildOptionTile(IconData iconData, String title, VoidCallback onTap) {
+    return ListTile(
+      contentPadding: EdgeInsets.only(left: 0.0, right: 0.0),
+      leading: CircleAvatar(
+        radius: 22,
+        backgroundColor: AppColor.white,
+        child: Icon(
+          iconData,
+          color: AppColor.grey,
+          size: 24,
+        ),
+      ),
+      title: Text(title),
+      onTap: onTap,
     );
   }
 }

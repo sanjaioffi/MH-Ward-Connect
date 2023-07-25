@@ -152,52 +152,53 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(16.0),
               child: Container(
+                height: 60,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
+                  color: Colors.grey[300],
                   borderRadius: BorderRadius.circular(8),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: InkWell(
-                  onTap: () {
-                    setState(() {
-                      _selectedItem = '';
-                    });
-                  },
-                  child: TypeAheadField(
-                    textFieldConfiguration: TextFieldConfiguration(
-                      style: TextStyle(color: AppColor.black),
-                      controller: TextEditingController(text: _selectedItem),
-                      decoration: const InputDecoration(
-                        // fillColor: AppColor.grey,
-                        prefixIcon: Icon(
-                          Icons.search_rounded,
-                          size: 30,
-                          color: AppColor.black,
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  children: [
+                    Icon(Icons.search, color: AppColor.grey),
+                    SizedBox(width: 8),
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          // Show the suggestion list here
+                        },
+                        child: TypeAheadField(
+                          textFieldConfiguration: TextFieldConfiguration(
+                            controller:
+                                TextEditingController(text: _selectedItem),
+                            decoration: InputDecoration(
+                              hintText: 'Search Wards...',
+                              border: InputBorder.none,
+                            ),
+                          ),
+                          suggestionsCallback: (pattern) async {
+                            return suggestions
+                                .where((item) => item
+                                    .toLowerCase()
+                                    .contains(pattern.toLowerCase()))
+                                .toList();
+                          },
+                          itemBuilder: (context, suggestion) {
+                            return ListTile(
+                              title: Text(suggestion),
+                            );
+                          },
+                          onSuggestionSelected: (suggestion) {
+                            setState(() {
+                              _selectedItem = suggestion;
+                            });
+                          },
                         ),
-                        hintText: 'Search...',
-                        border: InputBorder.none,
                       ),
                     ),
-                    suggestionsCallback: (pattern) async {
-                      return suggestions
-                          .where((item) => item
-                              .toLowerCase()
-                              .contains(pattern.toLowerCase()))
-                          .toList();
-                    },
-                    itemBuilder: (context, suggestion) {
-                      return ListTile(
-                        title: Text(suggestion),
-                      );
-                    },
-                    onSuggestionSelected: (suggestion) {
-                      setState(() {
-                        _selectedItem = suggestion;
-                      });
-                    },
-                  ),
+                  ],
                 ),
               ),
             ),
@@ -258,4 +259,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  
 }
