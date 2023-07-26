@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
@@ -207,8 +206,6 @@ class _HomeScreenState extends State<HomeScreen> {
               child: CarouselSlider(
                 options: CarouselOptions(
                   height: 200,
-                  // You can adjust the height as per your UI requirements
-                  // aspectRatio: 16 / 9,
                   viewportFraction: 0.9,
                   initialPage: 0,
                   enableInfiniteScroll: true,
