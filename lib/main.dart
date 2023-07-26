@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/mainpage.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/main_page.dart';
 
 void main() {
   runApp(

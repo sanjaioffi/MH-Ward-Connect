@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/chat_bot_screen.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/community_screen.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/home_screen.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/maps_screen.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/chat/chat_bot_screen.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/community/community_screen.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/home/home_screen.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/map/maps_screen.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 
 class MainScreen extends StatefulWidget {
@@ -29,8 +29,8 @@ class MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageStorage(
-        child: currentScreen,
         bucket: bucket,
+        child: currentScreen,
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColor.whatsAppTealGreen,
@@ -71,9 +71,10 @@ class MainScreenState extends State<MainScreen> {
                         Text(
                           'Home',
                           style: TextStyle(
-                              color: currentTab == 0
-                                  ? AppColor.whatsAppTealGreen
-                                  : AppColor.grey),
+                            color: currentTab == 0
+                                ? AppColor.whatsAppTealGreen
+                                : AppColor.grey,
+                          ),
                         ),
                       ],
                     ),
@@ -97,9 +98,10 @@ class MainScreenState extends State<MainScreen> {
                         Text(
                           'Map',
                           style: TextStyle(
-                              color: currentTab == 1
-                                  ? AppColor.whatsAppTealGreen
-                                  : AppColor.grey),
+                            color: currentTab == 1
+                                ? AppColor.whatsAppTealGreen
+                                : AppColor.grey,
+                          ),
                         ),
                       ],
                     ),
@@ -182,13 +184,13 @@ class MainScreenState extends State<MainScreen> {
       context: context,
       builder: (BuildContext context) {
         return Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -201,7 +203,7 @@ class MainScreenState extends State<MainScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               _buildOptionTile(Icons.flag_outlined, 'Post a Complaint', () {
                 // Handle post a complaint action
                 Navigator.pop(context); // Close the bottom sheet
@@ -225,7 +227,7 @@ class MainScreenState extends State<MainScreen> {
 
   Widget _buildOptionTile(IconData iconData, String title, VoidCallback onTap) {
     return ListTile(
-      contentPadding: EdgeInsets.only(left: 0.0, right: 0.0),
+      contentPadding: const EdgeInsets.only(left: 0.0, right: 0.0),
       leading: CircleAvatar(
         radius: 22,
         backgroundColor: AppColor.white,

@@ -159,11 +159,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.grey[300],
                   borderRadius: BorderRadius.circular(8),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   children: [
-                    Icon(Icons.search, color: AppColor.grey),
-                    SizedBox(width: 8),
+                    const Icon(Icons.search, color: AppColor.grey),
+                    const SizedBox(width: 8),
                     Expanded(
                       child: InkWell(
                         onTap: () {
@@ -173,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           textFieldConfiguration: TextFieldConfiguration(
                             controller:
                                 TextEditingController(text: _selectedItem),
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               hintText: 'Search Wards...',
                               border: InputBorder.none,
                             ),
@@ -213,8 +213,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   initialPage: 0,
                   enableInfiniteScroll: true,
                   autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 5),
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  autoPlayInterval: const Duration(seconds: 5),
+                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
                   autoPlayCurve: Curves.fastOutSlowIn,
                   enlargeCenterPage: true,
                   onPageChanged: (index, reason) {
@@ -226,7 +226,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 items: imageList.map((imageUrl) {
                   return Builder(
                     builder: (BuildContext context) {
-                      return Container(
+                      return SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(15.0),
@@ -259,6 +259,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  
 }
