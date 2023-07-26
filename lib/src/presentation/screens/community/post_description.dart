@@ -3,19 +3,22 @@ import 'package:flutter/material.dart';
 class PostDescription extends StatelessWidget {
   const PostDescription({
     super.key,
+    required this.postContent,
   });
+
+  final String postContent;
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: 10,
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 12,
         horizontal: 10,
       ),
       child: Text(
-        "Madurai drainage failure in all of the streets in malaipakam area due to heavy rains from yesterday and it proves too much to resist",
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
+        postContent,
+        style: const TextStyle(
+          fontWeight: FontWeight.w500,
           fontSize: 15,
         ),
       ),

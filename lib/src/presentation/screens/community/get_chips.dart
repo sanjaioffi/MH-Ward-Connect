@@ -8,10 +8,10 @@ final List<IconData> chipIcons = [
 ];
 
 final List<String> chipTitles = [
-  "Gallery",
-  "Tag Friends",
-  "Live",
-  "Isuues",
+  "புகைபடம்",
+  "நண்பர்கள்",
+  "பதிவு",
+  "குறைகள்",
 ];
 
 final List<Color> chipBgColor = [
