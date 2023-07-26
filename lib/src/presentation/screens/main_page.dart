@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/chat/chat_bot_screen.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/community/community_screen.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/home/home_screen.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/map/maps_screen.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/profile/profile_screen.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 
 class MainScreen extends StatefulWidget {
@@ -20,7 +20,7 @@ class MainScreenState extends State<MainScreen> {
     const HomeScreen(),
     const MapsScreen(),
     const CommunityScreen(),
-    const ChatBotScreen()
+    const ProfileScreen()
   ]; // to store nested tabs
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = const HomeScreen(); // Our first view in viewport
@@ -145,19 +145,19 @@ class MainScreenState extends State<MainScreen> {
                     onPressed: () {
                       setState(() {
                         currentScreen =
-                            const ChatBotScreen(); // if user taps on this dashboard tab will be active
+                            const ProfileScreen(); // if user taps on this dashboard tab will be active
                         currentTab = 3;
                       });
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Icon(Icons.chat,
+                        Icon(Icons.person_4_rounded,
                             color: currentTab == 3
                                 ? AppColor.whatsAppTealGreen
                                 : AppColor.grey),
                         Text(
-                          'ChatBot',
+                          'Profile',
                           style: TextStyle(
                               color: currentTab == 3
                                   ? AppColor.whatsAppTealGreen
