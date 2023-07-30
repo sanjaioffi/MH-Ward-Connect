@@ -31,7 +31,7 @@ class TopBar extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const NewPost(),
+                      builder: (context) => const NewPostScreen(),
                     ));
               },
               child: const Text(

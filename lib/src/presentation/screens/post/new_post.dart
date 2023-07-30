@@ -5,8 +5,8 @@ import 'package:madurai_ward_connect/src/presentation/screens/post/newpost_app.d
 import 'package:madurai_ward_connect/src/presentation/screens/post/post_button.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/post/post_info.dart';
 
-class NewPost extends StatelessWidget {
-  const NewPost({super.key});
+class NewPostScreen extends StatelessWidget {
+  const NewPostScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
