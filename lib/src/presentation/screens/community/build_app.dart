@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 
 AppBar buildApp(context) {
   return AppBar(
-    backgroundColor: Colors.white,
+    backgroundColor: AppColor.whatsAppTealGreen,
     elevation: 1,
     leadingWidth: MediaQuery.of(context).size.width,
     leading: const Padding(
@@ -14,7 +15,8 @@ AppBar buildApp(context) {
         "குழுமம்",
         style: TextStyle(
           fontSize: 25,
-          color: Colors.black,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
           letterSpacing: -1,
         ),
       ),
@@ -27,27 +29,27 @@ AppBar buildApp(context) {
         padding: EdgeInsets.only(right: 15),
         child: Icon(
           Icons.search,
-          color: Colors.grey,
+          color: AppColor.white,
         ),
       ),
-      Padding(
-        padding: EdgeInsets.only(right: 15),
-        child: Icon(
-          Icons.chat,
-          color: Colors.redAccent,
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.only(right: 15),
-        child: Icon(
-          Icons.group,
-          color: Colors.blueGrey,
-        ),
-      ),
-      Icon(
-        Icons.notifications,
-        color: Colors.blue,
-      ),
+      // Padding(
+      //   padding: EdgeInsets.only(right: 15),
+      //   child: Icon(
+      //     Icons.chat,
+      //     color: Colors.redAccent,
+      //   ),
+      // ),
+      // Padding(
+      //   padding: EdgeInsets.only(right: 15),
+      //   child: Icon(
+      //     Icons.group,
+      //     color: Colors.blueGrey,
+      //   ),
+      // ),
+      // Icon(
+      //   Icons.notifications,
+      //   color: Colors.blue,
+      // ),
     ],
   );
 }
