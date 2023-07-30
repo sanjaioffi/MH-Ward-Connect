@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:madurai_ward_connect/src/backend/inject_dependencies.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/main_page.dart';
+import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 
 void main() {
   // GetX Dependency injection before the app rendering to cover the delay
@@ -18,9 +19,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(
+          elevatedButtonTheme: const ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll(AppColor.whatsAppTealGreen),
+        ),
+      )),
       debugShowCheckedModeBanner: false,
-      home: MainScreen(),
+      home: const MainScreen(),
     );
   }
 }

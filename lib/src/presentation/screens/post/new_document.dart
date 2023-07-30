@@ -20,9 +20,6 @@ class PostDocument extends StatelessWidget {
           onPressed: () async {
             FilePickerResult? result = await FilePicker.platform.pickFiles(
               allowMultiple: false,
-              onFileLoading: (p0) {
-                // print("$p0");
-              },
               lockParentWindow: true,
               type: FileType.custom,
               allowedExtensions: [
