@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/main_page.dart';
+import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 
 void main() {
   runApp(
@@ -12,7 +13,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      color: AppColor.whatsAppTealGreen,
+      theme: ThemeData(
+          primaryColor: AppColor.whatsAppTealGreen,
+          appBarTheme: AppBarTheme(color: AppColor.whatsAppTealGreen)),
       debugShowCheckedModeBanner: false,
       home: MainScreen(),
     );
