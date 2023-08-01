@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:madurai_ward_connect/src/controller/user_controller.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 
 // show online users to get quick response for emeregeency
@@ -8,6 +11,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AuthController _authController = Get.find();
     int followersCount = 500; // Replace with actual follower count
     int followingCount = 250; // Replace with actual following count
     int Badges = 5; // Replace with actual following count
@@ -121,6 +125,10 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                _authController.authorizedUser != null
+                    ? Text(
+                        'Authorized User: ${_authController.authorizedUser!.uid}')
+                    : Text('User not authorized.'),
                 SizedBox(
                   height: 5,
                 ),

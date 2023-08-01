@@ -30,10 +30,13 @@ environment:
 dependencies:
   cached_network_image: ^3.2.3
   carousel_slider: ^4.2.1
+  cloud_firestore: ^4.8.4
   cupertino_icons: ^1.0.2
   dots_indicator: ^3.0.0
   dropdown_search: ^5.0.6
   file_picker: ^5.3.3
+  firebase_auth: ^4.7.2
+  firebase_core: ^2.15.0
   flutter:
     sdk: flutter
   flutter_typeahead: ^4.6.2
@@ -41,6 +44,7 @@ dependencies:
   get: ^4.6.5
   permission_handler: ^10.4.3
   persistent_bottom_nav_bar: ^5.0.2
+  pinput: ^2.3.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
