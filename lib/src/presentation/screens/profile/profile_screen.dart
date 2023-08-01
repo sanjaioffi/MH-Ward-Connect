@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
@@ -31,7 +32,28 @@ class ProfileScreen extends StatelessWidget {
             ),
             actions: [IconButton(onPressed: () {}, icon: Icon(Icons.settings))],
           ),
-          body: Padding(
+          body: 
+           StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+        stream: getUserDetailsStream(_authController.authorizedUser!.uid),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Error fetching data'),
+            );
+          } else {
+            if (snapshot.hasData) {
+              var userDetails = snapshot.data!.data();
+              String name = userDetails!['name'] ?? '';
+              String address = userDetails['address'] ?? '';
+              String dob = userDetails['dob'] ?? '';
+              String bloodGroup = userDetails['bloodGroup'] ?? '';
+              String lastBloodDonated = userDetails['lastBloodDonated'] ?? '';
+
+              return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,65 +68,7 @@ class ProfileScreen extends StatelessWidget {
                       width: 20,
                     ),
 
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    //   children: [
-                    //     Column(
-                    //       children: [
-                    //         Text(
-                    //           followingCount.toString(),
-                    //           style: TextStyle(
-                    //               color: AppColor.black,
-                    //               fontSize: 25,
-                    //               fontWeight: FontWeight.bold),
-                    //         ),
-                    //         Text(
-                    //           'Following',
-                    //           style: TextStyle(
-                    //               color: AppColor.whatsAppTealGreen,
-                    //               fontSize: 20,
-                    //               fontWeight: FontWeight.bold),
-                    //         )
-                    //       ],
-                    //     ),
-                    //     Column(
-                    //       children: [
-                    //         Text(
-                    //           followersCount.toString(),
-                    //           style: TextStyle(
-                    //               color: AppColor.black,
-                    //               fontSize: 25,
-                    //               fontWeight: FontWeight.bold),
-                    //         ),
-                    //         Text(
-                    //           'Followers',
-                    //           style: TextStyle(
-                    //               color: AppColor.whatsAppTealGreen,
-                    //               fontSize: 20,
-                    //               fontWeight: FontWeight.bold),
-                    //         )
-                    //       ],
-                    //     ),
-                    //     Column(
-                    //       children: [
-                    //         Text(
-                    //           Badges.toString(),
-                    //           style: TextStyle(
-                    //               color: AppColor.black,
-                    //               fontSize: 25,
-                    //               fontWeight: FontWeight.bold),
-                    //         ),
-                    //         Text(
-                    //           'Badges',
-                    //           style: TextStyle(
-                    //               color: AppColor.whatsAppTealGreen,
-                    //               fontSize: 20,
-                    //               fontWeight: FontWeight.bold),
-                    //         )
-                    //       ],
-                    //     ),
-                    //   ],
-                    // ),
+                    
                     SizedBox(
                       height: 20,
                     ),
@@ -117,7 +81,7 @@ class ProfileScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Sanjai Prabhakaran',
+                      name,
                       style: TextStyle(
                           color: AppColor.whatsAppTealGreen,
                           fontSize: 22,
@@ -125,10 +89,10 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                _authController.authorizedUser != null
-                    ? Text(
-                        'Authorized User: ${_authController.authorizedUser!.uid}')
-                    : Text('User not authorized.'),
+                // _authController.authorizedUser != null
+                //     ? Text(
+                //         'Authorized User: ${_authController.authorizedUser!.uid}')
+                //     : Text('User not authorized.'),
                 SizedBox(
                   height: 5,
                 ),
@@ -145,14 +109,14 @@ class ProfileScreen extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'Blood Group: B+ve',
+                      'Blood Group: $bloodGroup',
                       style: TextStyle(
                           color: AppColor.black,
                           fontSize: 18,
                           fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      '   (Last Donated: 12/02/2022)',
+                      '   (Last Donated: $lastBloodDonated)',
                       style: TextStyle(
                           color: AppColor.grey,
                           fontSize: 15,
@@ -164,7 +128,7 @@ class ProfileScreen extends StatelessWidget {
                   height: 3,
                 ),
                 Text(
-                  'Emergency contact: 902516807',
+                  'Emergency contact: ${_authController.authorizedUser!.phoneNumber}',
                   style: TextStyle(
                       color: AppColor.black,
                       fontSize: 18,
@@ -174,7 +138,7 @@ class ProfileScreen extends StatelessWidget {
                   height: 3,
                 ),
                 Text(
-                  'Emergency address : 12/2, 2nd street, madurai-625001',
+                  'Emergency address : $address',
                   style: TextStyle(
                       color: AppColor.black,
                       fontSize: 18,
@@ -205,7 +169,26 @@ class ProfileScreen extends StatelessWidget {
                 )
               ],
             ),
-          )),
+          );
+            } else {
+              return Center(
+                child: Text('User not found'),
+              );
+            }
+          }
+        },
+      ),
+    )
+          
+          
+          
+          
+          
     );
   }
+
+  // Function to get the user details from Firestore based on the user ID
+Stream<DocumentSnapshot<Map<String, dynamic>>> getUserDetailsStream(String userId) {
+  return FirebaseFirestore.instance.collection('users').doc(userId).snapshots();
+}
 }

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:madurai_ward_connect/src/controller/user_controller.dart';
+import 'package:madurai_ward_connect/src/presentation/onboarding/personal_info.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/main_page.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 import 'package:pinput/pinput.dart';
@@ -23,6 +24,7 @@ class _MyPhoneState extends State<MyPhone> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController otpController = TextEditingController();
   FirebaseAuth auth = FirebaseAuth.instance;
+ 
   bool otpVisibility = false;
   User? user;
   String verificationID = "";
@@ -160,7 +162,9 @@ class _MyPhoneState extends State<MyPhone> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10))),
                             onPressed: () {
-                              startCountdown();
+                              setState(() {
+                                isButtonDisabled = true;
+                              });
                               loginWithPhone();
                             },
                             child: isButtonDisabled
@@ -246,6 +250,16 @@ class _MyPhoneState extends State<MyPhone> {
         otpVisibility = true;
         await {verificationID = verificationId};
         print(verificationID);
+        startCountdown();
+        Fluttertoast.showToast(
+          msg: 'Code Send Successfully',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
       },
       codeAutoRetrievalTimeout: (String verificationId) {},
     );
@@ -254,6 +268,9 @@ class _MyPhoneState extends State<MyPhone> {
   void verifyOTP() async {
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verificationID, smsCode: otpController.text);
+
+    UserCredential userCred = await auth.signInWithCredential(credential);
+    bool? isNewUser = userCred.additionalUserInfo?.isNewUser;
 
     await auth.signInWithCredential(credential).then(
       (value) {
@@ -273,17 +290,14 @@ class _MyPhoneState extends State<MyPhone> {
             textColor: Colors.white,
             fontSize: 16.0,
           );
+          if (isNewUser != null && isNewUser) {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => OnboardingScreen()));
+          } else {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => MainScreen()));
+          }
           _authController.setAuthorizedUser(user!);
-          String name = 'nameController.text';
-  String address = 'addressController.text';
-  String dob = 'dobController.text';
-  String bloodGroup = 'bloodGroupController.text';
-  String lastBloodDonated = 'lastDonatedController.text';
-
-    saveUserDetails(user!.uid,name, address, dob, bloodGroup, lastBloodDonated);
-         
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => MainScreen()));
         } else {
           Fluttertoast.showToast(
             msg: "your login is failed",
@@ -302,19 +316,4 @@ class _MyPhoneState extends State<MyPhone> {
   ///
   ///
   // Function to save user details and posts to Firestore
-Future<void> saveUserDetails(String userId, String name, String address, String dob, String bloodGroup, String lastBloodDonated) async {
-  try {
-    await FirebaseFirestore.instance.collection('users').doc(userId).set({
-      'name': name,
-      'address': address,
-      'dob': dob,
-      'bloodGroup': bloodGroup,
-      'lastBloodDonated': lastBloodDonated,
-      
-    });
-  } catch (e) {
-    print('Error saving user details and posts: $e');
-    // Handle error
-  }
-}
 }
