@@ -6,25 +6,25 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:madurai_ward_connect/src/controller/user_controller.dart';
-import 'package:madurai_ward_connect/src/presentation/onboarding/personal_info.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/onboarding/personal_info.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/main_page.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 import 'package:pinput/pinput.dart';
 
-class MyPhone extends StatefulWidget {
-  const MyPhone({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
 
   @override
-  State<MyPhone> createState() => _MyPhoneState();
+  State<Login> createState() => _LoginState();
 }
 
-class _MyPhoneState extends State<MyPhone> {
+class _LoginState extends State<Login> {
   final AuthController _authController = Get.put(AuthController());
   TextEditingController countryController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController otpController = TextEditingController();
   FirebaseAuth auth = FirebaseAuth.instance;
- 
+
   bool otpVisibility = false;
   User? user;
   String verificationID = "";
@@ -227,11 +227,12 @@ class _MyPhoneState extends State<MyPhone> {
   void loginWithPhone() async {
     print(phoneController.text);
     auth.verifyPhoneNumber(
+      timeout: Duration(seconds: 5),
       phoneNumber: "+91" + phoneController.text,
       verificationCompleted: (PhoneAuthCredential credential) async {
-        await auth.signInWithCredential(credential).then((value) {
-          print("You are logged in successfully");
-        });
+        // await auth.signInWithCredential(credential).then((value) {
+        //   print("You are logged in successfully");
+        // });
       },
       verificationFailed: (FirebaseAuthException e) {
         Fluttertoast.showToast(
@@ -244,7 +245,7 @@ class _MyPhoneState extends State<MyPhone> {
           fontSize: 16.0,
         );
         isButtonDisabled = false;
-        print(e.message);
+        print('>>>>>>${e.message}');
       },
       codeSent: (String verificationId, int? resendToken) async {
         otpVisibility = true;
@@ -256,7 +257,7 @@ class _MyPhoneState extends State<MyPhone> {
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
+          backgroundColor: AppColor.whatsAppLightGreen,
           textColor: Colors.white,
           fontSize: 16.0,
         );
@@ -286,7 +287,7 @@ class _MyPhoneState extends State<MyPhone> {
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
+            backgroundColor: AppColor.whatsAppLightGreen,
             textColor: Colors.white,
             fontSize: 16.0,
           );

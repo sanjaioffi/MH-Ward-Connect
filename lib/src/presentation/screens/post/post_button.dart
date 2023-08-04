@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:madurai_ward_connect/src/presentation/onboarding/personal_info.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/onboarding/personal_info.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 
 class PostButton extends StatelessWidget {

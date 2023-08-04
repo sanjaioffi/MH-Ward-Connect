@@ -14,6 +14,13 @@ AppBar buildAppBar(BuildContext context) {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          IconButton(
+              onPressed: () {
+                Get.back();},
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.black,
+              )),
           const Text(
             "ChatBot",
             style: TextStyle(
