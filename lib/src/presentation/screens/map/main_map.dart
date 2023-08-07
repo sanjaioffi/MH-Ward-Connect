@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
@@ -34,25 +35,36 @@ class _MainMapScreenState extends State<MainMapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () => Get.back(), icon: Icon(Icons.arrow_back_ios)),
+        title: const Text('Ward Map',
+            style: TextStyle(
+                color: AppColor.white,
+                fontSize: 25,
+                fontWeight: FontWeight.bold)),
+        backgroundColor: AppColor.whatsAppTealGreen,
+      ),
       body: GoogleMap(
         initialCameraPosition: CameraPosition(
             target: LatLng(
               9.923215241301918,
               78.12260948762633,
             ),
-            zoom: 15),
+            zoom: 13),
         markers: {
           Marker(
             markerId: MarkerId('Demo'),
             position: LatLng(
-              10.367312,
-              77.980293,
+              9.923215241301918,
+              78.12260948762633,
             ),
             draggable: true,
             onDrag: (value) => print(value),
           ),
         },
         polygons: {
+         
           Polygon(
               polygonId: PolygonId('ward 1'),
               points: ward1,

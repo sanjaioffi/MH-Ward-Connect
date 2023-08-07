@@ -2,8 +2,14 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:get/get.dart';
+import 'package:madurai_ward_connect/src/controller/location_controller.dart';
+import 'package:madurai_ward_connect/src/data/models/councillor_model.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/chat/chat_screen.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/map/main_map.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
+import 'package:marquee/marquee.dart';
+import 'package:geolocator/geolocator.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -122,148 +128,230 @@ class _HomeScreenState extends State<HomeScreen> {
     // Add more image URLs here
   ];
   int _currentIndex = 0;
-
-  String _selectedItem = '';
+  String notificationText =
+      "CityConnect is your go-to app for staying informed and engaged with everything happening in our wonderful city. Whether you're a resident, visitor, or local business, this app is designed to keep you connected to the heartbeat of our community.";
+ 
   TextEditingController wardName = TextEditingController();
+ @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    wardName.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Ward Connect',
-                    style: TextStyle(
-                        color: AppColor.whatsAppTealGreen,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ChatScreen(),
-                        ),
-                      );
-                    },
-                    child: Image.asset(
-                      'assets/icons/chatbot.png',
-                      color: AppColor.whatsAppTealGreen,
-                      width: 35,
-                      height: 35,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                height: 60,
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.search, color: AppColor.grey),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: InkWell(
-                        onTap: () {
-                          // Show the suggestion list here
-                        },
-                        child: TypeAheadField(
-                          textFieldConfiguration: TextFieldConfiguration(
-                            controller:
-                                TextEditingController(text: _selectedItem),
-                            decoration: const InputDecoration(
-                              hintText: 'Search Wards...',
-                              border: InputBorder.none,
-                            ),
-                          ),
-                          suggestionsCallback: (pattern) async {
-                            return suggestions
-                                .where((item) => item
-                                    .toLowerCase()
-                                    .contains(pattern.toLowerCase()))
-                                .toList();
-                          },
-                          itemBuilder: (context, suggestion) {
-                            return ListTile(
-                              title: Text(suggestion),
-                            );
-                          },
-                          onSuggestionSelected: (suggestion) {
-                            setState(() {
-                              _selectedItem = suggestion;
-                            });
-                          },
-                        ),
-                      ),
+                    const Text(
+                      'Ward Connect',
+                      style: TextStyle(
+                          color: AppColor.whatsAppTealGreen,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold),
                     ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ChatScreen(),
+                          ),
+                        );
+                      },
+                      child: Image.asset(
+                        'assets/icons/chatbot.png',
+                        color: AppColor.whatsAppTealGreen,
+                        width: 35,
+                        height: 35,
+                      ),
+                    )
                   ],
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CarouselSlider(
-                options: CarouselOptions(
-                  height: 200,
-                  viewportFraction: 0.9,
-                  initialPage: 0,
-                  enableInfiniteScroll: true,
-                  autoPlay: true,
-                  autoPlayInterval: const Duration(seconds: 5),
-                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enlargeCenterPage: true,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _currentIndex = index;
-                    });
-                  },
-                ),
-                items: imageList.map((imageUrl) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15.0),
-                          child: Image.network(
-                            imageUrl,
-                            fit: BoxFit.cover,
-                          ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                      );
-                    },
-                  );
-                }).toList(),
-              ),
-            ),
-            DotsIndicator(
-              dotsCount: imageList.length,
-              position: _currentIndex.toInt(),
-              decorator: DotsDecorator(
-                activeColor: AppColor
-                    .whatsAppTealGreen, // You can customize the color of active dot
-                size: const Size.square(9.0),
-                activeSize: const Size(18.0, 9.0),
-                activeShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.search, color: AppColor.grey),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: InkWell(
+                                onTap: () {
+                                  // Show the suggestion list here
+                                },
+                                child: TypeAheadField(
+                                  textFieldConfiguration:
+                                      TextFieldConfiguration(
+                                    controller: TextEditingController(),
+                                    decoration: const InputDecoration(
+                                      hintText: 'Search Wards...',
+                                      border: InputBorder.none,
+                                    ),
+                                  ),
+                                  suggestionsCallback: (pattern) async {
+                                    return suggestions
+                                        .where((item) => item
+                                            .toLowerCase()
+                                            .contains(pattern.toLowerCase()))
+                                        .toList();
+                                  },
+                                  itemBuilder: (context, suggestion) {
+                                    return ListTile(
+                                      title: Text(suggestion),
+                                    );
+                                  },
+                                  onSuggestionSelected: (suggestion) {
+                                    Get.find<LocationController>()
+                                        .updateLocation(suggestion.toString());
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          Get.find<LocationController>().getLocation();
+                        },
+                        icon: const Icon(Icons.location_on,
+                            color: Colors.red, size: 40))
+                  ],
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CarouselSlider(
+                  options: CarouselOptions(
+                    height: 200,
+                    viewportFraction: 0.9,
+                    initialPage: 0,
+                    enableInfiniteScroll: true,
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 5),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 800),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    enlargeCenterPage: true,
+                    onPageChanged: (index, reason) {
+                      if (mounted) setState(() {
+                        _currentIndex = index;
+                      });
+                    },
+                  ),
+                  items: imageList.map((imageUrl) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15.0),
+                            child: Image.network(
+                              imageUrl,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }).toList(),
+                ),
+              ),
+              DotsIndicator(
+                dotsCount: imageList.length,
+                position: _currentIndex.toInt(),
+                decorator: DotsDecorator(
+                  activeColor: AppColor
+                      .whatsAppTealGreen, // You can customize the color of active dot
+                  size: const Size.square(9.0),
+                  activeSize: const Size(18.0, 9.0),
+                  activeShape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                height: 50,
+                child: Marquee(
+                  text: notificationText,
+                  style: const TextStyle(
+                      fontSize: 16.0, fontWeight: FontWeight.bold),
+                  scrollAxis: Axis.horizontal,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  blankSpace: 20.0,
+                  velocity:
+                      100.0, // Adjust the velocity to control the scroll speed
+                  pauseAfterRound: const Duration(seconds: 1),
+                  startPadding: 0.0,
+                  accelerationDuration: const Duration(seconds: 1),
+                  accelerationCurve: Curves.linear,
+                  decelerationDuration: const Duration(milliseconds: 500),
+                  decelerationCurve: Curves.easeOut,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Get.to(MainMapScreen());
+                },
+                child: GetBuilder<LocationController>(builder: ((controller) {
+                  return Card(
+                    child: ListTile(
+                      leading: const Icon(
+                        Icons.location_on,
+                        color: AppColor.whatsAppTealGreen,
+                      ),
+                      title: controller.isLoading.value
+                          ? const Column(
+                              children: [
+                                SizedBox(
+                                    child: LinearProgressIndicator(
+                                  backgroundColor: AppColor.whatsAppLightGreen,
+                                  color: AppColor.whatsAppTealGreen,
+                                )),
+                                Text(
+                                  'Fetching Current Location...',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                              ],
+                            )
+                          : Text(
+                              controller.locationData.value,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: AppColor.whatsAppTealGreen,
+                      ),
+                    ),
+                  );
+                })),
+              ),
+            ],
+          ),
         ),
       ),
     );

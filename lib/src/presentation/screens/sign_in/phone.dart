@@ -282,6 +282,7 @@ class _LoginState extends State<Login> {
     ).whenComplete(
       () {
         if (user != null) {
+          Get.offAll(MainScreen());
           Fluttertoast.showToast(
             msg: "You are logged in successfully",
             toastLength: Toast.LENGTH_SHORT,

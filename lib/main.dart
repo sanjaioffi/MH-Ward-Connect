@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:madurai_ward_connect/src/backend/inject_dependencies.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/maps/main_map.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/home/home_screen.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/main_page.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/settings_screen/settings_screen.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/sign_in/phone.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 import 'package:firebase_core/firebase_core.dart';

@@ -26,7 +26,7 @@ AppBar buildAppBar(BuildContext context) {
             style: TextStyle(
               color: AppColor.whatsAppTealGreen,
               fontWeight: FontWeight.bold,
-              fontSize: 24,
+              fontSize: 20,
             ),
           ),
           GetX<ChatController>(
