@@ -19,7 +19,8 @@ class _SettingsPageState extends State<SettingsPage> {
 
   List<String> languages = ["English", "தமிழ்"]; // Add more languages if needed
   List<String> themes = ["Light", "Dark"]; // Add more themes if needed
-  final AuthController _authController = Get.find();
+  // final AuthController _authController = Get.find();
+  String userId = Get.find<AuthController>().authorizedUser!.uid;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
         title: Text("Settings"),
       ),
       body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-        stream: getUserDetailsStream(_authController.authorizedUser!.uid),
+        stream: getUserDetailsStream(userId),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -48,7 +49,7 @@ class _SettingsPageState extends State<SettingsPage> {
               String bloodGroup = userDetails['bloodGroup'] ?? '';
               String lastBloodDonated = userDetails['lastBloodDonated'] ?? '';
               String phoneNumber =
-                  _authController.authorizedUser!.phoneNumber ?? '';
+                  Get.find<AuthController>().authorizedUser!.phoneNumber ?? '';
 
               return Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -101,8 +102,17 @@ class _SettingsPageState extends State<SettingsPage> {
                       subtitle: Text(name),
                       onTap: () {
                         _showInputDialog("Name", name, (newValue) {
-                          setState(() {
-                            name = newValue;
+                          _showInputDialog("Phone Number", phoneNumber,
+                              (newValue) async {
+                            final CollectionReference _usersCollection =
+                                FirebaseFirestore.instance.collection('users');
+                            try {
+                              await _usersCollection.doc(userId).update({
+                                'name': newValue,
+                              });
+                            } catch (e) {
+                              print('Error updating emergency details: $e');
+                            }
                           });
                         });
                       },
@@ -148,14 +158,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     ListTile(
                       title: Text("Phone Number"),
                       subtitle: Text(phoneNumber),
-                      onTap: () {
-                        _showInputDialog("Phone Number", phoneNumber,
-                            (newValue) {
-                          setState(() {
-                            phoneNumber = newValue;
-                          });
-                        });
-                      },
+                      onTap: () {},
                     ),
                     Divider(),
                     ListTile(
@@ -168,13 +171,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     ListTile(
                       tileColor: AppColor.whatsAppTealGreen,
                       title: Center(child: Text("Save Details")),
-                      onTap: () {
-                        updateEmergencyDetails(
-                            _authController.authorizedUser!.uid,
-                            bloodGroup,
-                            address,
-                            phoneNumber);
-                      },
+                      onTap: () {},
                     ),
                     Divider(),
                   ],
@@ -189,21 +186,6 @@ class _SettingsPageState extends State<SettingsPage> {
         },
       ),
     );
-  }
-
-  static Future<void> updateEmergencyDetails(String userId, String bloodGroup,
-      String address, String phoneNumber) async {
-    final CollectionReference _usersCollection =
-        FirebaseFirestore.instance.collection('users');
-    try {
-      await _usersCollection.doc(userId).update({
-        'bloodGroup': bloodGroup,
-        'address': address,
-        'phoneNumber': phoneNumber,
-      });
-    } catch (e) {
-      print('Error updating emergency details: $e');
-    }
   }
 
   void _showInputDialog(
@@ -229,6 +211,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             TextButton(
               onPressed: () {
+                print('pressed');
                 onSubmitted(newValue);
                 Navigator.of(context).pop();
               },

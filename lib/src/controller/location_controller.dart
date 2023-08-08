@@ -4,9 +4,16 @@ import 'package:location/location.dart';
 class LocationController extends GetxController {
   RxBool isLoading = false.obs;
   RxString locationData = ''.obs;
+  RxInt wardNo = 0.obs;
 
   void updateLocation(String location) {
     locationData.value = location;
+    update();
+  }
+
+  void updateWardNo() {
+    if (wardNo.value < 100)wardNo.value++;
+    update();
   }
 
   void getLocation() async {
@@ -44,5 +51,6 @@ class LocationController extends GetxController {
       isLoading.value = false;
       // Handle any errors that may occur during location fetching
     }
+    update();
   }
 }

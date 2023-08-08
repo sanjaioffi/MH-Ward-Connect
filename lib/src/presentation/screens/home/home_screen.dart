@@ -11,6 +11,8 @@ import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 import 'package:marquee/marquee.dart';
 import 'package:geolocator/geolocator.dart';
 
+import '../../ward_info/ward_info_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -130,14 +132,15 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   String notificationText =
       "CityConnect is your go-to app for staying informed and engaged with everything happening in our wonderful city. Whether you're a resident, visitor, or local business, this app is designed to keep you connected to the heartbeat of our community.";
- 
+
   TextEditingController wardName = TextEditingController();
- @override
+  @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
     wardName.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -253,9 +256,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enlargeCenterPage: true,
                     onPageChanged: (index, reason) {
-                      if (mounted) setState(() {
-                        _currentIndex = index;
-                      });
+                      if (mounted)
+                        setState(() {
+                          _currentIndex = index;
+                        });
                     },
                   ),
                   items: imageList.map((imageUrl) {
@@ -349,6 +353,128 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   );
                 })),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    ' Quick Links',
+                    style: const TextStyle(
+                        fontSize: 20.0, fontWeight: FontWeight.bold),
+                  )),
+              SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                height: 250,
+                child: GridView(
+                    physics: NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3, childAspectRatio: 1.0),
+                    children: [
+                      SizedBox(
+                        width: 100,
+                        child: Column(
+                          children: [
+                            InkWell(
+                              borderRadius: BorderRadius.circular(30),
+                              onTap: () {
+                                // Get.to(() => ComplaintScreen());
+                              },
+                              child: CircleAvatar(
+                                  backgroundColor: AppColor.winterGreen,
+                                  radius: 30,
+                                  child: Image.asset(
+                                    'assets/icons/zone.png',
+                                    width: 40,
+                                    height: 40,
+                                  )),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text('Zone Info')
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 100,
+                        child: Column(
+                          children: [
+                            InkWell(
+                              borderRadius: BorderRadius.circular(30),
+                              onTap: () {
+                                Get.to(() => WardInfoScreen());
+                              },
+                              child: CircleAvatar(
+                                  backgroundColor: AppColor.winterGreen,
+                                  radius: 30,
+                                  child: Image.asset(
+                                    'assets/icons/ward.png',
+                                    width: 40,
+                                    height: 40,
+                                  )),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text('Ward Info')
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 150,
+                        child: Column(
+                          children: [
+                            InkWell(
+                              borderRadius: BorderRadius.circular(30),
+                              onTap: () {
+                                // Get.to(() => ComplaintScreen());
+                              },
+                              child: CircleAvatar(
+                                  backgroundColor: AppColor.winterGreen,
+                                  radius: 30,
+                                  child: Image.asset(
+                                    'assets/icons/complaint.png',
+                                    width: 50,
+                                    height: 50,
+                                  )),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text('Raise Complaint')
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 150,
+                        child: Column(
+                          children: [
+                            InkWell(
+                              borderRadius: BorderRadius.circular(30),
+                              onTap: () {
+                                // Get.to(() => ComplaintScreen());
+                              },
+                              child: CircleAvatar(
+                                  backgroundColor: AppColor.winterGreen,
+                                  radius: 30,
+                                  child: Image.asset(
+                                    'assets/icons/blood.png',
+                                    width: 40,
+                                    height: 40,
+                                  )),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text('Blood Bank')
+                          ],
+                        ),
+                      ),
+                    ]),
               ),
             ],
           ),
