@@ -13,10 +13,10 @@ class WardInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<LocationController>(builder: ((controller) {
       return Scaffold(
-          floatingActionButton: FloatingActionButton(
-            onPressed: () => controller.updateWardNo(),
-            child: const Icon(Icons.location_on),
-          ),
+          // floatingActionButton: FloatingActionButton(
+          //   onPressed: () => controller.updateWardNo(),
+          //   child: const Icon(Icons.location_on),
+          // ),
           body: SafeArea(
             child: SingleChildScrollView(
               child: Column(
@@ -43,7 +43,7 @@ class WardInfoScreen extends StatelessWidget {
                           AspectRatio(
                             aspectRatio: 1,
                             child: Image.network(
-                              councillorData[controller.wardNo.value].photoUrl,
+                              councillorData[controller.wardNo.value - 1].photoUrl,
                               fit: BoxFit.fill,
                             ),
                           ),
@@ -60,7 +60,7 @@ class WardInfoScreen extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  councillorData[controller.wardNo.value].name,
+                                  councillorData[controller.wardNo.value - 1].name,
                                   style: const TextStyle(fontSize: 20),
                                 ),
                               ),
@@ -79,7 +79,7 @@ class WardInfoScreen extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  councillorData[controller.wardNo.value]
+                                  councillorData[controller.wardNo.value - 1]
                                       .address,
                                   style: const TextStyle(fontSize: 20),
                                 ),
@@ -99,19 +99,19 @@ class WardInfoScreen extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  councillorData[controller.wardNo.value]
+                                  councillorData[controller.wardNo.value - 1]
                                       .contactNo,
                                   style: const TextStyle(fontSize: 20),
                                 ),
                               ),
                             ],
                           ),
-                          councillorData[controller.wardNo.value].emailId == ''
+                          councillorData[controller.wardNo.value - 1].emailId == ''
                               ? SizedBox()
                               : const Divider(
                                   color: Colors.black,
                                 ),
-                          councillorData[controller.wardNo.value].emailId == ''
+                          councillorData[controller.wardNo.value - 1].emailId == ''
                               ? const SizedBox()
                               : Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -124,7 +124,7 @@ class WardInfoScreen extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        councillorData[controller.wardNo.value]
+                                        councillorData[controller.wardNo.value - 1]
                                             .emailId,
                                         style: const TextStyle(fontSize: 20),
                                       ),
@@ -147,7 +147,7 @@ class WardInfoScreen extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  councillorData[controller.wardNo.value]
+                                  councillorData[controller.wardNo.value - 1]
                                       .additionalResponsibility,
                                   style: const TextStyle(fontSize: 20),
                                 ),
@@ -167,7 +167,7 @@ class WardInfoScreen extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  councillorData[controller.wardNo.value]
+                                  councillorData[controller.wardNo.value - 1]
                                       .partyName,
                                   style: const TextStyle(fontSize: 20),
                                 ),

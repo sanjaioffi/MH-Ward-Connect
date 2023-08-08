@@ -21,7 +21,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<String> suggestions = [
+  List<String> wardNames = [
     'Santhi Nagar',
     'Koodal Nagar',
     'Anaiyur',
@@ -134,6 +134,13 @@ class _HomeScreenState extends State<HomeScreen> {
       "CityConnect is your go-to app for staying informed and engaged with everything happening in our wonderful city. Whether you're a resident, visitor, or local business, this app is designed to keep you connected to the heartbeat of our community.";
 
   TextEditingController wardName = TextEditingController();
+  List zoneList = [
+    'EAST - ZONE I',
+    'NORTH - ZONE II',
+    'CENTRAL - ZONE III',
+    'SOUTH - ZONE IV',
+    'WEST - ZONE V'
+  ];
   @override
   void dispose() {
     // TODO: implement dispose
@@ -210,7 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                   suggestionsCallback: (pattern) async {
-                                    return suggestions
+                                    return wardNames
                                         .where((item) => item
                                             .toLowerCase()
                                             .contains(pattern.toLowerCase()))
@@ -224,6 +231,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                   onSuggestionSelected: (suggestion) {
                                     Get.find<LocationController>()
                                         .updateLocation(suggestion.toString());
+                                    Get.find<LocationController>().updateWardNo(
+                                        wardNames.indexOf(
+                                                suggestion.toString()) +
+                                            1);
+
+                                    // print(wardNames
+                                    //         .indexOf(suggestion.toString()) +
+                                    //     1);
+                                    // print(
+                                    //     Get.find<LocationController>().wardNo);
                                   },
                                 ),
                               ),
@@ -341,10 +358,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ],
                             )
-                          : Text(
-                              controller.locationData.value,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 20),
+                          : Column(
+                              children: [
+                                Text(
+                                  controller.locationData.value,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(fontSize: 20),
+                                ),
+                                Text(
+                                  zoneList[controller.zoneNo.value - 1],
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      fontSize: 15,
+                                      color: AppColor.whatsAppTealGreen),
+                                )
+                              ],
                             ),
                       trailing: const Icon(
                         Icons.arrow_forward_ios,
@@ -374,31 +402,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3, childAspectRatio: 1.0),
                     children: [
-                      SizedBox(
-                        width: 100,
-                        child: Column(
-                          children: [
-                            InkWell(
-                              borderRadius: BorderRadius.circular(30),
-                              onTap: () {
-                                // Get.to(() => ComplaintScreen());
-                              },
-                              child: CircleAvatar(
-                                  backgroundColor: AppColor.winterGreen,
-                                  radius: 30,
-                                  child: Image.asset(
-                                    'assets/icons/zone.png',
-                                    width: 40,
-                                    height: 40,
-                                  )),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text('Zone Info')
-                          ],
-                        ),
-                      ),
                       SizedBox(
                         width: 100,
                         child: Column(
@@ -471,6 +474,57 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 5,
                             ),
                             Text('Blood Bank')
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 100,
+                        child: Column(
+                          children: [
+                            InkWell(
+                              borderRadius: BorderRadius.circular(30),
+                              onTap: () {
+                                // Get.to(() => ComplaintScreen());
+                              },
+                              child: CircleAvatar(
+                                  backgroundColor: AppColor.winterGreen,
+                                  radius: 30,
+                                  child: Image.asset(
+                                    'assets/icons/zone.png',
+                                    width: 40,
+                                    height: 40,
+                                  )),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text('Zone Info')
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 150,
+                        child: Column(
+                          children: [
+                            InkWell(
+                              borderRadius: BorderRadius.circular(30),
+                              onTap: () {
+                                // Get.to(() => ComplaintScreen());
+                              },
+                              child: CircleAvatar(
+                                  backgroundColor: AppColor.winterGreen,
+                                  radius: 30,
+                                  child: Image.asset(
+                                    'assets/icons/about.png',
+                                    color: AppColor.isabelline,
+                                    width: 30,
+                                    height: 30,
+                                  )),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text('About Madurai')
                           ],
                         ),
                       ),
