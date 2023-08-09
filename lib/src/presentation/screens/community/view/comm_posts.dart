@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/community/view/build_app.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/community/view/post_component.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/community/view/post_skeleton.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/community/view/quick_links.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/community/view/top_bar.dart';
 
 class MyCollectionScreen extends StatefulWidget {
   const MyCollectionScreen({super.key});
@@ -21,66 +25,48 @@ class _MyCollectionScreenState extends State<MyCollectionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('My Collection'),
+      appBar: buildApp(context),
+      body: FutureBuilder<QuerySnapshot>(
+        future: postCollections.get(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return const PostSkeleton();
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const PostSkeleton(); // Display a loading indicator
+          }
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return const PostSkeleton();
+          }
+          return Column(
+            children: [
+              const TopBar(),
+              const QuickLinks(),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index) {
+                    var documentSnapshot = snapshot.data!.docs[index];
+                    var documentData = documentSnapshot.data() as Map;
+                    String postUserName = documentData['post_username'] ?? '';
+                    String postImage = documentData['post_image'] ?? '';
+                    int postLikes = documentData['post_likes'] ?? '';
+                    String postDescription = documentData['post_content'] ?? '';
+                    String postUserImage = documentData['post_userimage'] ?? '';
+                    List<dynamic> postComments = documentData['post_comments'];
+                    return CommPostComponent(
+                      imageLink: postUserImage,
+                      postUser: postUserName,
+                      postDescription: postDescription,
+                      userProfile: postUserImage,
+                    );
+                  },
+                ),
+              ),
+            ],
+          );
+        },
       ),
-      body: const PostSkeleton(),
     );
   }
 }
-      // body: FutureBuilder<QuerySnapshot>(
-      //   future: postCollections.get(),
-      //   builder: (context, snapshot) {
-      //     if (snapshot.hasError) {
-      //       return Column(
-      //         mainAxisAlignment: MainAxisAlignment.center,
-      //         crossAxisAlignment: CrossAxisAlignment.center,
-      //         children: [
-      //           Text('Error: ${snapshot.error}'),
-      //         ],
-      //       );
-      //     }
-
-      //     if (snapshot.connectionState == ConnectionState.waiting) {
-      //       return const PostSkeleton(); // Display a loading indicator
-      //     }
-
-      //     if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-      //       return const Text('No data available'); // Handle no data case
-      //     }
-
-        
-
-          // Data is available, build your UI using the snapshot data
-          // return ListView.builder(
-          //   itemCount: snapshot.data!.docs.length,
-          //   itemBuilder: (context, index) {
-          //     var documentSnapshot = snapshot.data!.docs[index];
-          //     // Access entire document data using documentSnapshot.data()
-          //     var documentData = documentSnapshot.data() as Map;
-          //     print(documentData);
-          //     String postUserName = documentData['post_username'] ?? '';
-          //     String postImage = documentData['post_image'] ?? '';
-          //     int postLikes = documentData['post_likes'] ?? '';
-          //     String postDocument = documentData['post_content'] ?? '';
-          //     String postUserImage = documentData['post_userimage'] ?? '';
-          //     List<dynamic> postComments = documentData['post_comments'];
-          //     return Column(
-          //       children: [
-          //         Text(postUserName),
-          //         Text(postImage),
-          //         Text(postLikes.toString()),
-          //         Text(postDocument),
-          //         Text(postUserImage),
-          //         Text(postComments.toString()),
-          //       ],
-          //     );
-          //   },
-          // );
-//         },
-//       ),
-//     );
-//   }
-// }
-
-

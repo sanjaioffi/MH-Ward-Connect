@@ -13,27 +13,39 @@ class PostImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => PostDetailedView(
-              postLink: imageLink,
-            ),
-          ),
-        );
-      },
-      child: Container(
+    print(imageLink);
+    if (imageLink == "test") {
+      return Container(
         height: 300,
-        decoration: BoxDecoration(
+        width: double.maxFinite,
+        decoration: const BoxDecoration(
           color: Colors.black12,
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: CachedNetworkImageProvider(imageLink),
-          ),
         ),
-      ),
-    );
+      );
+    }
+    return imageLink != "null"
+        ? GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PostDetailedView(
+                    postLink: imageLink,
+                  ),
+                ),
+              );
+            },
+            child: Container(
+              height: 300,
+              decoration: BoxDecoration(
+                color: Colors.black12,
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: CachedNetworkImageProvider(imageLink),
+                ),
+              ),
+            ),
+          )
+        : const SizedBox();
   }
 }

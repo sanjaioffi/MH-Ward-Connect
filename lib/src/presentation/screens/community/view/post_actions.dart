@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/community/view/post_detailed.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/community/view/share_button.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/community/view/upvote.dart';
 
 class PostCTA extends StatelessWidget {
   const PostCTA({
@@ -7,32 +10,41 @@ class PostCTA extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(left: 10, right: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              CustomIcon(
-                icon: Icons.ios_share,
-                actionTag: "Upvote",
-                count: "10",
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        UpVoteButton(),
+        CommentButton(),
+        ShareButton(),
+      ],
+    );
+  }
+}
+
+class CommentButton extends StatelessWidget {
+  const CommentButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const PostDetailedView(
+                  postLink: '',
+                ),
               ),
-              CustomIcon(
-                icon: Icons.comment_outlined,
-                actionTag: "Comment",
-                count: "10",
-              ),
-              CustomIcon(
-                icon: Icons.share_outlined,
-                actionTag: "Share",
-                count: "",
-              ),
-            ],
-          ),
-        ],
-      ),
+            );
+          },
+          icon: const Icon(Icons.comment_outlined),
+        ),
+        const Text("20"),
+      ],
     );
   }
 }

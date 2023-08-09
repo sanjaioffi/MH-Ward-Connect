@@ -7,10 +7,11 @@ class PostSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 10,
+      physics: const BouncingScrollPhysics(),
+      itemCount: 5,
       itemBuilder: (context, index) {
         return const CommPostComponent(
-          imageLink: "",
+          imageLink: "test",
           postUser: "",
           postDescription: "",
           userProfile: "",

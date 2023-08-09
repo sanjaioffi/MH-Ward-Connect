@@ -27,9 +27,12 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       color: AppColor.whatsAppTealGreen,
       theme: ThemeData(
-          fontFamily: 'poppins',
-          primaryColor: AppColor.whatsAppTealGreen,
-          appBarTheme: const AppBarTheme(color: AppColor.whatsAppTealGreen)),
+        fontFamily: 'poppins',
+        primaryColor: AppColor.whatsAppTealGreen,
+        appBarTheme: const AppBarTheme(
+          color: AppColor.whatsAppTealGreen,
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       home: const MyCollectionScreen(),
     );
