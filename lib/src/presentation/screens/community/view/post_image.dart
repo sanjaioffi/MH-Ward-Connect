@@ -1,7 +1,7 @@
 // Post Of the user
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/community/post_detailed.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/community/view/post_detailed.dart';
 
 class PostImage extends StatelessWidget {
   const PostImage({

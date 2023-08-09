@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/community/get_chips.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/community/view/get_chips.dart';
 
 class QuickLinks extends StatelessWidget {
   const QuickLinks({

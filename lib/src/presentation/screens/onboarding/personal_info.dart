@@ -16,9 +16,9 @@ class OnboardingScreen extends StatelessWidget {
     TextEditingController name = TextEditingController();
     TextEditingController age = TextEditingController();
     TextEditingController address = TextEditingController();
-    TextEditingController blood_group = TextEditingController();
-    TextEditingController last_donated = TextEditingController();
-        final AuthController _authController = Get.find();
+    TextEditingController bloodGroup = TextEditingController();
+    TextEditingController lastDonated = TextEditingController();
+    final AuthController authController = Get.find();
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -45,13 +45,13 @@ class OnboardingScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
+                  const Padding(
+                    padding: EdgeInsets.symmetric(
                       vertical: 10,
                     ),
                     child: Text(
                       'User Name',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColor.whatsAppTealGreen,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -73,7 +73,7 @@ class OnboardingScreen extends StatelessWidget {
                       ),
                       child: TextField(
                         controller: name,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           prefixIcon: Icon(Icons.person),
                           border: InputBorder.none,
                           hintText: "Enter your name",
@@ -94,13 +94,13 @@ class OnboardingScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
+                  const Padding(
+                    padding: EdgeInsets.symmetric(
                       vertical: 10,
                     ),
                     child: Text(
                       'Age',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColor.whatsAppTealGreen,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -122,7 +122,7 @@ class OnboardingScreen extends StatelessWidget {
                       ),
                       child: TextField(
                         controller: age,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           prefixIcon: Icon(Icons.person),
                           border: InputBorder.none,
                           hintText: "Enter your age",
@@ -143,13 +143,13 @@ class OnboardingScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
+                  const Padding(
+                    padding: EdgeInsets.symmetric(
                       vertical: 10,
                     ),
                     child: Text(
                       'Address',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColor.whatsAppTealGreen,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -171,7 +171,7 @@ class OnboardingScreen extends StatelessWidget {
                       ),
                       child: TextField(
                         controller: address,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           prefixIcon: Icon(Icons.home),
                           border: InputBorder.none,
                           hintText: "Enter your address",
@@ -192,13 +192,13 @@ class OnboardingScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
+                  const Padding(
+                    padding: EdgeInsets.symmetric(
                       vertical: 10,
                     ),
                     child: Text(
                       'Blood Group',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColor.whatsAppTealGreen,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -219,8 +219,8 @@ class OnboardingScreen extends StatelessWidget {
                         vertical: 5,
                       ),
                       child: TextField(
-                        controller: blood_group,
-                        decoration: InputDecoration(
+                        controller: bloodGroup,
+                        decoration: const InputDecoration(
                           prefixIcon: Icon(Icons.bloodtype),
                           border: InputBorder.none,
                           hintText: "Enter your blood group",
@@ -241,13 +241,13 @@ class OnboardingScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
+                  const Padding(
+                    padding: EdgeInsets.symmetric(
                       vertical: 10,
                     ),
                     child: Text(
                       'Last Date of Blood Donation',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColor.whatsAppTealGreen,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -268,8 +268,8 @@ class OnboardingScreen extends StatelessWidget {
                         vertical: 5,
                       ),
                       child: TextField(
-                        controller: last_donated,
-                        decoration: InputDecoration(
+                        controller: lastDonated,
+                        decoration: const InputDecoration(
                           prefixIcon: Icon(Icons.history),
                           border: InputBorder.none,
                           hintText: "Enter last date you donated blood",
@@ -293,16 +293,20 @@ class OnboardingScreen extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
                     onPressed: () {
-                      print([name, age, address, blood_group]);
-                      
+                      print([name, age, address, bloodGroup]);
 
-                      saveUserDetails(_authController.authorizedUser!.uid, name.text, address.text, age.text, blood_group.text,
-                          last_donated.text);
+                      saveUserDetails(
+                          authController.authorizedUser!.uid,
+                          name.text,
+                          address.text,
+                          age.text,
+                          bloodGroup.text,
+                          lastDonated.text);
 
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => OnboardingScreen()));
+                              builder: (context) => const OnboardingScreen()));
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -310,7 +314,7 @@ class OnboardingScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Text("Sign Up")),
+                    child: const Text("Sign Up")),
               ),
             ),
           ]),
@@ -320,15 +324,15 @@ class OnboardingScreen extends StatelessWidget {
   }
 
   Future<void> saveUserDetails(String userId, String name, String address,
-      String age, String blood_group, String lastBloodDonated) async {
+      String age, String bloodGroup, String lastBloodDonated) async {
     try {
       await FirebaseFirestore.instance.collection('users').doc(userId).set({
         'name': name,
         'address': address,
         'age': age,
-        'bloodGroup': blood_group,
+        'bloodGroup': bloodGroup,
         'lastBloodDonated': lastBloodDonated,
-        'posts' : []
+        'posts': []
       });
     } catch (e) {
       print('Error saving user details and posts: $e');
