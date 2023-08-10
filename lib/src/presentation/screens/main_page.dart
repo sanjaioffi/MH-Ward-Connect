@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/community/community_screen.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/community/view/comm_posts.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/home/home_screen.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/map/maps_screen.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/maps/main_map.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/profile/profile_screen.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
@@ -20,7 +19,7 @@ class MainScreenState extends State<MainScreen> {
   final List<Widget> screens = [
     const HomeScreen(),
     const MainMapScreen(),
-    const CommunityScreen(),
+    const CommunityPostScreen(),
     const ProfileScreen()
   ]; // to store nested tabs
   final PageStorageBucket bucket = PageStorageBucket();
@@ -120,7 +119,7 @@ class MainScreenState extends State<MainScreen> {
                     onPressed: () {
                       setState(() {
                         currentScreen =
-                            const CommunityScreen(); // if user taps on this dashboard tab will be active
+                            const CommunityPostScreen(); // if user taps on this dashboard tab will be active
                         currentTab = 2;
                       });
                     },

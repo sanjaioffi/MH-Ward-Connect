@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/community/build_detailed.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/community/post_description.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/community/post_info.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/community/view/build_detailed.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/community/view/post_description.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/community/view/post_info.dart';
 
 class PostDetailedView extends StatelessWidget {
   const PostDetailedView({

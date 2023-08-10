@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:madurai_ward_connect/src/backend/inject_dependencies.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/maps/main_map.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/sign_in/phone.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/community/view/comm_posts.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:madurai_ward_connect/firebase_options.dart';
@@ -26,14 +25,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      
       color: AppColor.whatsAppTealGreen,
       theme: ThemeData(
         fontFamily: 'poppins',
-          primaryColor: AppColor.whatsAppTealGreen,
-          appBarTheme: AppBarTheme(color: AppColor.whatsAppTealGreen)),
+        primaryColor: AppColor.whatsAppTealGreen,
+        appBarTheme: const AppBarTheme(
+          color: AppColor.whatsAppTealGreen,
+        ),
+      ),
       debugShowCheckedModeBanner: false,
-      home:Login(),
+      home: const CommunityPostScreen(),
     );
   }
 }
