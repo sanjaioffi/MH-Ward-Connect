@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:madurai_ward_connect/src/controller/user_controller.dart';
@@ -14,15 +15,14 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthController _authController = Get.find();
-    int followersCount = 500; // Replace with actual follower count
-    int followingCount = 250; // Replace with actual following count
+
     int Badges = 5; // Replace with actual following count
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+        // leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
         title: Text(
-          'Profile',
+          'User Profile',
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.bold,
@@ -30,9 +30,14 @@ class ProfileScreen extends StatelessWidget {
             letterSpacing: 1,
           ),
         ),
-        actions: [IconButton(onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>SettingsPage()));
-        }, icon: Icon(Icons.settings))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SettingsPage()));
+              },
+              icon: Icon(Icons.settings))
+        ],
       ),
       body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
         stream: getUserDetailsStream(_authController.authorizedUser!.uid),
@@ -48,7 +53,7 @@ class ProfileScreen extends StatelessWidget {
           } else {
             if (snapshot.hasData) {
               var userDetails = snapshot.data!.data();
-              
+
               String name = userDetails!['name'] ?? '';
               String address = userDetails['address'] ?? '';
               String dob = userDetails['dob'] ?? '';
@@ -62,10 +67,12 @@ class ProfileScreen extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        CircleAvatar(
-                            radius: 40,
-                            backgroundImage: NetworkImage(
-                                'https://images.pexels.com/photos/2486168/pexels-photo-2486168.jpeg')),
+                        ProfilePicture(
+                          random: true,
+                          name: name,
+                          radius: 31,
+                          fontsize: 21,
+                        ),
                         SizedBox(
                           width: 20,
                         ),

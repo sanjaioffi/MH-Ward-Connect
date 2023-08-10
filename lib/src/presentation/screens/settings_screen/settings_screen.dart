@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/sign_in/phone.dart';
 
 import '../../../controller/user_controller.dart';
 import '../../themes/app_colors.dart';
@@ -94,7 +95,11 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                     Divider(),
                     ListTile(
-                      title: Center(child: Text("Emergency Details")),
+                      title: Center(
+                          child: Text(
+                        "Edit Emergency Details",
+                        style: TextStyle(color: Colors.red),
+                      )),
                     ),
                     Divider(),
                     ListTile(
@@ -169,11 +174,14 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                     Divider(),
                     ListTile(
-                      tileColor: AppColor.whatsAppTealGreen,
-                      title: Center(child: Text("Save Details")),
-                      onTap: () {},
+                      title: Text(
+                        "Logout",
+                        style: TextStyle(color: Colors.red),
+                      ),
+                      onTap: () {
+                        Get.to(Login());
+                      },
                     ),
-                    Divider(),
                   ],
                 ),
               );

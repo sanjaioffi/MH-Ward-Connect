@@ -299,10 +299,10 @@ class OnboardingScreen extends StatelessWidget {
                       saveUserDetails(_authController.authorizedUser!.uid, name.text, address.text, age.text, blood_group.text,
                           last_donated.text);
 
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => OnboardingScreen()));
+                      // Navigator.pushReplacement(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => OnboardingScreen()));
                       Navigator.push(
                         context,
                         MaterialPageRoute(

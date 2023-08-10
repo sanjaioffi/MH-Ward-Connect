@@ -25,14 +25,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      
       color: AppColor.whatsAppTealGreen,
       theme: ThemeData(
-        fontFamily: 'poppins',
+          fontFamily: 'poppins',
+          primarySwatch: Colors.green,
           primaryColor: AppColor.whatsAppTealGreen,
           appBarTheme: AppBarTheme(color: AppColor.whatsAppTealGreen)),
       debugShowCheckedModeBanner: false,
-      home:Login(),
+      home: Login(),
     );
   }
 }

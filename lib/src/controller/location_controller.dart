@@ -4,6 +4,7 @@ import 'package:location/location.dart';
 class LocationController extends GetxController {
   RxBool isLoading = false.obs;
   RxString locationData = ''.obs;
+  RxList coordinates = [].obs;
   RxInt wardNo = 1.obs;
   RxInt zoneNo = 2.obs;
 
@@ -151,7 +152,7 @@ class LocationController extends GetxController {
     try {
       isLoading.value = true;
       Location location = Location();
-
+      
       bool serviceEnabled = await location.serviceEnabled();
 
       if (!serviceEnabled) {
@@ -174,6 +175,11 @@ class LocationController extends GetxController {
       LocationData currentLocation = await location.getLocation();
       locationData.value =
           '${currentLocation.latitude} <-> ${currentLocation.longitude}';
+      
+      coordinates.value = [
+        currentLocation.latitude,
+        currentLocation.longitude
+      ];
 
       print(currentLocation);
       isLoading.value = false;

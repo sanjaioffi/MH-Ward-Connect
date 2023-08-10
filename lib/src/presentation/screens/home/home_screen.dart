@@ -11,7 +11,8 @@ import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 import 'package:marquee/marquee.dart';
 import 'package:geolocator/geolocator.dart';
 
-import '../../ward_info/ward_info_screen.dart';
+import '../complaint/complaint_screen.dart';
+import '../ward_info/ward_info_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -434,7 +435,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             InkWell(
                               borderRadius: BorderRadius.circular(30),
                               onTap: () {
-                                // Get.to(() => ComplaintScreen());
+                                Get.to(() => ComplaintScreen());
                               },
                               child: CircleAvatar(
                                   backgroundColor: AppColor.winterGreen,

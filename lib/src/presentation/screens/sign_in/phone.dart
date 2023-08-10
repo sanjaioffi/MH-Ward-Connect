@@ -62,7 +62,7 @@ class _LoginState extends State<Login> {
       height: 56,
       textStyle: TextStyle(
           fontSize: 20,
-          color: Color.fromRGBO(30, 60, 87, 1),
+          color: AppColor.whatsAppTealGreen,
           fontWeight: FontWeight.w600),
       decoration: BoxDecoration(
         border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
@@ -97,14 +97,14 @@ class _LoginState extends State<Login> {
                 height: 25,
               ),
               Text(
-                "Phone Verification",
+                "Welcome to Ward Connect",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: 10,
               ),
               Text(
-                "We need to register your phone without getting started!",
+                "An App for mudurai people to find thier ward and thier ward members",
                 style: TextStyle(
                   fontSize: 16,
                 ),
@@ -158,7 +158,7 @@ class _LoginState extends State<Login> {
                         height: 35,
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColor.whatsAppLightGreen,
+                                backgroundColor: AppColor.whatsAppTealGreen,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10))),
                             onPressed: () {
@@ -202,14 +202,14 @@ class _LoginState extends State<Login> {
                 onCompleted: (pin) => print(pin),
               ),
               SizedBox(
-                height: 20,
+                height: 40,
               ),
               SizedBox(
                 width: double.infinity,
                 height: 45,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColor.whatsAppLightGreen,
+                        backgroundColor: AppColor.whatsAppTealGreen,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
                     onPressed: () {
