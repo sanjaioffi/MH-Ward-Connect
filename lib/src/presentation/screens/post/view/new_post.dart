@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/post/controller/new_post_controller.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/post/view/new_content.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/post/view/new_document.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/post/view/newpost_app.dart';
@@ -20,11 +24,73 @@ class NewPostScreen extends StatelessWidget {
               PostUserInfo(),
               PostContent(),
               PostDocument(),
-              PostButton(),
+              NewPostBottomWidgets(),
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+class NewPostBottomWidgets extends StatelessWidget {
+  const NewPostBottomWidgets({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GetX<NewPostController>(builder: (controller) {
+      return Column(
+        children: [
+          controller.imageLink.value == "null"
+              ? const PostButton()
+              : Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 20,
+                        horizontal: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 50,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Image(
+                                image: FileImage(
+                                  File(
+                                    controller.imageLink.value,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: SizedBox(
+                              child: Text(
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                controller.imageLink.substring(89),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    const PostButton(),
+                  ],
+                )
+        ],
+      );
+    });
   }
 }

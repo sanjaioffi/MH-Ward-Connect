@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
@@ -12,7 +11,7 @@ class NewPostController extends GetxController {
   RxDouble buttonSplasRadius = 20.0.obs;
 
   // Post Function
-  Future<void> pushPost() async {
+  Future<bool> pushPost() async {
     String downloadUrl = "null";
     if (imageLink.value != "null") {
       final File imageFile = File(imageLink.value);
@@ -41,10 +40,12 @@ class NewPostController extends GetxController {
 
       // Add a new document with a generated ID
       await collection.add(data);
-
-      print('Document added to collection');
+      postContent.value = "";
+      imageLink.value = "null";
+      return true;
     } catch (e) {
       print('Error adding document: $e');
+      return false;
     }
   }
 }

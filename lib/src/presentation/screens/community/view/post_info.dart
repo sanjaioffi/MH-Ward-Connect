@@ -26,7 +26,7 @@ class PostInfo extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              postUserImage != ""
+              postUserImage != "" && postUserImage != "null"
                   ? CircleAvatar(
                       backgroundColor: AppColor.whatsAppTealGreen,
                       backgroundImage: CachedNetworkImageProvider(

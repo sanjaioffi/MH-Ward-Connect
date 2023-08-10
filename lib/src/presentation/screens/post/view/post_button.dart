@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/post/controller/new_post_controller.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/post/view/succes_screen.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 
 class PostButton extends StatelessWidget {
@@ -20,32 +21,42 @@ class PostButton extends StatelessWidget {
           width: double.infinity,
           child: ElevatedButton(
             style: ButtonStyle(
+              elevation: const MaterialStatePropertyAll(0),
               backgroundColor: MaterialStatePropertyAll(
-                controller.postContent.value != ""
+                controller.postContent.value.length >= 10
                     ? AppColor.whatsAppTealGreen
-                    : AppColor.grey,
+                    : AppColor.grey.withOpacity(.5),
               ),
             ),
-            onPressed: () {
-              controller.postContent.value != ""
-                  ? controller.pushPost()
-                  : ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: const Text(
-                          'Please Enter your content',
+            onPressed: () async {
+              controller.postContent.value.length < 10
+                  ? ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          'Please enter your post details',
                         ),
-                        duration: const Duration(
-                          seconds: 2,
+                        duration: Duration(
+                          seconds: 1,
                         ), // Optional duration for how long the Snackbar should be visible.
-                        action: SnackBarAction(
-                          label: 'Dismiss',
-                          onPressed: () {
-                            // Code to perform when the action button is pressed.
-                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                          },
-                        ),
                       ),
-                    );
+                    )
+                  : await controller.pushPost()
+                      ? Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SuccessScreen(),
+                          ),
+                        )
+                      : ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Please enter your post details',
+                            ),
+                            duration: Duration(
+                              seconds: 1,
+                            ), // Optional duration for how long the Snackbar should be visible.
+                          ),
+                        );
             },
             child: const Text(
               "பதி",

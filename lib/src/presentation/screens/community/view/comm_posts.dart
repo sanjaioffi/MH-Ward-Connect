@@ -6,19 +6,20 @@ import 'package:madurai_ward_connect/src/presentation/screens/community/view/pos
 import 'package:madurai_ward_connect/src/presentation/screens/community/view/quick_links.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/community/view/top_bar.dart';
 
-class MyCollectionScreen extends StatefulWidget {
-  const MyCollectionScreen({super.key});
+class CommunityPostScreen extends StatefulWidget {
+  const CommunityPostScreen({super.key});
 
   @override
-  State<MyCollectionScreen> createState() => _MyCollectionScreenState();
+  State<CommunityPostScreen> createState() => _CommunityPostScreenState();
 }
 
-class _MyCollectionScreenState extends State<MyCollectionScreen> {
-  late CollectionReference<Map<String, dynamic>> postCollections;
+class _CommunityPostScreenState extends State<CommunityPostScreen> {
+  late Stream<QuerySnapshot<Map<String, dynamic>>> postCollections;
 
   @override
   void initState() {
-    postCollections = FirebaseFirestore.instance.collection('posts');
+    postCollections =
+        FirebaseFirestore.instance.collection('posts').snapshots();
     super.initState();
   }
 
@@ -26,16 +27,14 @@ class _MyCollectionScreenState extends State<MyCollectionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildApp(context),
-      body: FutureBuilder<QuerySnapshot>(
-        future: postCollections.get(),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: postCollections,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return const PostSkeleton();
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
             return const PostSkeleton(); // Display a loading indicator
-          }
-          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return const PostSkeleton();
           }
           return Column(
@@ -44,6 +43,8 @@ class _MyCollectionScreenState extends State<MyCollectionScreen> {
               const QuickLinks(),
               Expanded(
                 child: ListView.builder(
+                  reverse: true,
+                  physics: const BouncingScrollPhysics(),
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, index) {
                     var documentSnapshot = snapshot.data!.docs[index];
@@ -52,13 +53,13 @@ class _MyCollectionScreenState extends State<MyCollectionScreen> {
                     String postImage = documentData['post_image'] ?? '';
                     int postLikes = documentData['post_likes'] ?? '';
                     String postDescription = documentData['post_content'] ?? '';
-                    String postUserImage = documentData['post_userimage'] ?? '';
-                    List<dynamic> postComments = documentData['post_comments'];
+                    List<dynamic> postComments =
+                        documentData['post_comments'] ?? [];
                     return CommPostComponent(
-                      imageLink: postUserImage,
+                      imageLink: postImage,
                       postUser: postUserName,
                       postDescription: postDescription,
-                      userProfile: postUserImage,
+                      userProfile: postImage,
                     );
                   },
                 ),

@@ -19,7 +19,7 @@ class MainScreenState extends State<MainScreen> {
   final List<Widget> screens = [
     const HomeScreen(),
     const MainMapScreen(),
-    const MyCollectionScreen(),
+    const CommunityPostScreen(),
     const ProfileScreen()
   ]; // to store nested tabs
   final PageStorageBucket bucket = PageStorageBucket();
@@ -119,7 +119,7 @@ class MainScreenState extends State<MainScreen> {
                     onPressed: () {
                       setState(() {
                         currentScreen =
-                            const MyCollectionScreen(); // if user taps on this dashboard tab will be active
+                            const CommunityPostScreen(); // if user taps on this dashboard tab will be active
                         currentTab = 2;
                       });
                     },
