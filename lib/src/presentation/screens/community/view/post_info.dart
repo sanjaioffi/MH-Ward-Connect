@@ -1,6 +1,7 @@
 // Post UserImg with Time of the Post
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 
 class PostInfo extends StatelessWidget {
@@ -26,26 +27,29 @@ class PostInfo extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CircleAvatar(
-                backgroundColor: AppColor.whatsAppTealGreen,
-                backgroundImage: CachedNetworkImageProvider(
-                  postUserImage,
-                ),
-              ),
+              ProfilePicture(name: postUserName, radius: 20, fontsize: 15),
               const SizedBox(width: 10),
-              Text(
-                postUserName,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              postUserName != ""
+                  ? Text(
+                      postUserName,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  : Container(
+                      margin: const EdgeInsets.only(
+                        bottom: 2,
+                      ),
+                      height: 20,
+                      width: 180,
+                      decoration: const BoxDecoration(
+                        color: Colors.black12,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(5),
+                        ),
+                      ),
+                    ),
             ],
-          ),
-          const Text(
-            ". 2 நாள்",
-            style: TextStyle(
-              fontSize: 15,
-            ),
           ),
         ],
       ),

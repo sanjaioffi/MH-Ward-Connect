@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -36,7 +35,7 @@ class _LoginState extends State<Login> {
       isButtonDisabled = true;
     });
 
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         countdown--;
         if (countdown == 0) {
@@ -50,7 +49,6 @@ class _LoginState extends State<Login> {
 
   @override
   void initState() {
-    // TODO: implement initState
     countryController.text = "+91";
     super.initState();
   }
@@ -60,24 +58,24 @@ class _LoginState extends State<Login> {
     final defaultPinTheme = PinTheme(
       width: 56,
       height: 56,
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
           fontSize: 20,
           color: AppColor.whatsAppTealGreen,
           fontWeight: FontWeight.w600),
       decoration: BoxDecoration(
-        border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+        border: Border.all(color: const Color.fromRGBO(234, 239, 243, 1)),
         borderRadius: BorderRadius.circular(20),
       ),
     );
 
     final focusedPinTheme = defaultPinTheme.copyDecorationWith(
-      border: Border.all(color: Color.fromRGBO(114, 178, 238, 1)),
+      border: Border.all(color: const Color.fromRGBO(114, 178, 238, 1)),
       borderRadius: BorderRadius.circular(8),
     );
 
     final submittedPinTheme = defaultPinTheme.copyWith(
       decoration: defaultPinTheme.decoration?.copyWith(
-        color: Color.fromRGBO(234, 239, 243, 1),
+        color: const Color.fromRGBO(234, 239, 243, 1),
       ),
     );
     return Scaffold(
@@ -97,14 +95,14 @@ class _LoginState extends State<Login> {
                 height: 25,
               ),
               Text(
-                "Welcome to Ward Connect",
+                "Phone Verification",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: 10,
               ),
               Text(
-                "An App for mudurai people to find thier ward and thier ward members",
+                "We need to register your phone without getting started!",
                 style: TextStyle(
                   fontSize: 16,
                 ),
@@ -158,7 +156,7 @@ class _LoginState extends State<Login> {
                         height: 35,
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColor.whatsAppTealGreen,
+                                backgroundColor: AppColor.whatsAppLightGreen,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10))),
                             onPressed: () {
@@ -202,14 +200,14 @@ class _LoginState extends State<Login> {
                 onCompleted: (pin) => print(pin),
               ),
               SizedBox(
-                height: 40,
+                height: 20,
               ),
               SizedBox(
                 width: double.infinity,
                 height: 45,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColor.whatsAppTealGreen,
+                        backgroundColor: AppColor.whatsAppLightGreen,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
                     onPressed: () {
@@ -225,10 +223,10 @@ class _LoginState extends State<Login> {
   }
 
   void loginWithPhone() async {
-    print(phoneController.text);
+    // print(phoneController.text);
     auth.verifyPhoneNumber(
-      timeout: Duration(seconds: 5),
-      phoneNumber: "+91" + phoneController.text,
+      timeout: const Duration(seconds: 5),
+      phoneNumber: "+91${phoneController.text}",
       verificationCompleted: (PhoneAuthCredential credential) async {
         // await auth.signInWithCredential(credential).then((value) {
         //   print("You are logged in successfully");
@@ -249,8 +247,10 @@ class _LoginState extends State<Login> {
       },
       codeSent: (String verificationId, int? resendToken) async {
         otpVisibility = true;
-        await {verificationID = verificationId};
-        print(verificationID);
+        {
+          verificationID = verificationId;
+        }
+        // print(verificationID);
         startCountdown();
         Fluttertoast.showToast(
           msg: 'Code Send Successfully',
@@ -293,11 +293,19 @@ class _LoginState extends State<Login> {
             fontSize: 16.0,
           );
           if (isNewUser != null && isNewUser) {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => OnboardingScreen()));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const OnboardingScreen(),
+              ),
+            );
           } else {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => MainScreen()));
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MainScreen(),
+              ),
+            );
           }
           _authController.setAuthorizedUser(user!);
         } else {

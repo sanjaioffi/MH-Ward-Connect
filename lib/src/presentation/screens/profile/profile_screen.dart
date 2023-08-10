@@ -43,11 +43,11 @@ class ProfileScreen extends StatelessWidget {
         stream: getUserDetailsStream(_authController.authorizedUser!.uid),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasError) {
-            return Center(
+            return const Center(
               child: Text('Error fetching data'),
             );
           } else {
@@ -115,24 +115,7 @@ class ProfileScreen extends StatelessWidget {
                     SizedBox(
                       height: 5,
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          'Blood Group: $bloodGroup',
-                          style: TextStyle(
-                              color: AppColor.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        Text(
-                          '   (Last Donated: $lastBloodDonated)',
-                          style: TextStyle(
-                              color: AppColor.grey,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
-                    ),
+
                     SizedBox(
                       height: 3,
                     ),
@@ -143,9 +126,31 @@ class ProfileScreen extends StatelessWidget {
                           fontSize: 18,
                           fontWeight: FontWeight.w500),
                     ),
-                    SizedBox(
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Blood Group: $bloodGroup',
+                          style: const TextStyle(
+                              color: AppColor.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                          '   (Last Donated: $lastBloodDonated)',
+                          style: const TextStyle(
+                              color: AppColor.grey,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
                       height: 3,
                     ),
+
                     Text(
                       'Emergency address : $address',
                       style: TextStyle(
@@ -180,7 +185,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               );
             } else {
-              return Center(
+              return const Center(
                 child: Text('User not found'),
               );
             }
