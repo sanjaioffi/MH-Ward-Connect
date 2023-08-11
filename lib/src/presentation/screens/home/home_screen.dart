@@ -1,21 +1,17 @@
-import 'dart:async';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import 'package:madurai_ward_connect/src/controller/location_controller.dart';
-import 'package:madurai_ward_connect/src/data/models/councillor_model.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/about_madurI/about_madurai_screen.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/blood_bank/blood_bank.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/chat/chat_screen.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/issue/view/issue.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/map/main_map.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/map/test_map.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 import 'package:marquee/marquee.dart';
-import 'package:geolocator/geolocator.dart';
 
+import '../about_madurI/about_madurai_screen.dart';
+import '../blood_bank/blood_bank.dart';
 import '../complaint/complaint_screen.dart';
 import '../ward_info/ward_info_screen.dart';
 import '../zone_info/zone_info.dart';
@@ -150,7 +146,6 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     wardName.dispose();
   }
@@ -179,17 +174,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MapScreen(),
+                            builder: (context) => const MarkIssuePage(),
                           ),
                         );
                       },
-                      child: Image.asset(
-                        'assets/icons/chatbot.png',
-                        color: AppColor.whatsAppTealGreen,
-                        width: 35,
-                        height: 35,
+                      child: const Icon(
+                        Icons.report_problem_sharp,
+                        size: 35,
+                        color: Colors.red,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -242,12 +236,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                         wardNames.indexOf(
                                                 suggestion.toString()) +
                                             1);
-
-                                    // print(wardNames
-                                    //         .indexOf(suggestion.toString()) +
-                                    //     1);
-                                    // print(
-                                    //     Get.find<LocationController>().wardNo);
                                   },
                                 ),
                               ),
@@ -256,12 +244,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    IconButton(
-                        onPressed: () {
-                          Get.find<LocationController>().getLocation();
-                        },
-                        icon: const Icon(Icons.location_on,
-                            color: Colors.red, size: 40))
+                    // ),
                   ],
                 ),
               ),
@@ -280,10 +263,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enlargeCenterPage: true,
                     onPageChanged: (index, reason) {
-                      if (mounted)
+                      if (mounted) {
                         setState(() {
                           _currentIndex = index;
                         });
+                      }
                     },
                   ),
                   items: imageList.map((imageUrl) {
@@ -341,7 +325,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               InkWell(
                 onTap: () {
-                  Get.to(MainMapScreen());
+                  Get.to(const MainMapScreen());
                 },
                 child: GetBuilder<LocationController>(builder: ((controller) {
                   return Card(
@@ -392,22 +376,23 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 10,
               ),
-              Align(
+              const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     ' Quick Links',
-                    style: const TextStyle(
-                        fontSize: 20.0, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               SizedBox(
                 height: 250,
                 child: GridView(
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3, childAspectRatio: 1.0),
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3, childAspectRatio: 1.0),
                     children: [
                       SizedBox(
                         width: 100,
@@ -416,7 +401,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             InkWell(
                               borderRadius: BorderRadius.circular(30),
                               onTap: () {
-                                Get.to(() => WardInfoScreen());
+                                Get.to(() => const WardInfoScreen());
                               },
                               child: CircleAvatar(
                                   backgroundColor: AppColor.winterGreen,
@@ -427,10 +412,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 40,
                                   )),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
-                            Text('Ward Info')
+                            const Text('Ward Info')
                           ],
                         ),
                       ),
@@ -441,7 +426,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             InkWell(
                               borderRadius: BorderRadius.circular(30),
                               onTap: () {
-                                Get.to(() => ComplaintScreen());
+                                Get.to(() => const ComplaintScreen());
                               },
                               child: CircleAvatar(
                                   backgroundColor: AppColor.winterGreen,
@@ -452,10 +437,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 50,
                                   )),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
-                            Text('Raise Complaint')
+                            const Text('Raise Complaint')
                           ],
                         ),
                       ),
@@ -477,10 +462,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 40,
                                   )),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
-                            Text('Blood Bank')
+                            const Text('Blood Bank')
                           ],
                         ),
                       ),
@@ -491,7 +476,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             InkWell(
                               borderRadius: BorderRadius.circular(30),
                               onTap: () {
-                                Get.to(() => ZoneInfoScreen());
+                                Get.to(() => const ZoneInfoScreen());
                               },
                               child: CircleAvatar(
                                   backgroundColor: AppColor.winterGreen,
@@ -502,10 +487,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 40,
                                   )),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
-                            Text('Zone Info')
+                            const Text('Zone Info')
                           ],
                         ),
                       ),
@@ -528,10 +513,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 30,
                                   )),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
-                            Text('About Madurai')
+                            const Text('About Madurai')
                           ],
                         ),
                       ),

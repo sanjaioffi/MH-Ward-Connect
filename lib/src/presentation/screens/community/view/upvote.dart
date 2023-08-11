@@ -9,7 +9,7 @@ class UpVoteButton extends StatefulWidget {
 }
 
 class _UpVoteButtonState extends State<UpVoteButton> {
-  int likes = 20;
+  int likes = 0;
   bool isLiked = false;
   @override
   Widget build(BuildContext context) {
@@ -17,21 +17,22 @@ class _UpVoteButtonState extends State<UpVoteButton> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         IconButton(
-          onPressed: () {
-            setState(() {
-              if (isLiked) {
-                likes--;
-              } else {
-                likes++;
-              }
-              isLiked = !isLiked;
-            });
-          },
-          icon: Icon(
-            Icons.arrow_upward_rounded,
-            color: isLiked ? AppColor.whatsAppTealGreen : AppColor.black,
-          ),
-        ),
+            onPressed: () {
+              setState(() {
+                if (isLiked) {
+                  likes--;
+                } else {
+                  likes++;
+                }
+                isLiked = !isLiked;
+              });
+            },
+            icon: isLiked
+                ? const Icon(Icons.favorite_outlined,
+                    color: AppColor.whatsAppTealGreen)
+                : const Icon(
+                    Icons.favorite_outline,
+                  )),
         Text(
           likes.toString(),
         ),

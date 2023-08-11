@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:madurai_ward_connect/src/presentation/screens/community/view/post_detailed.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/community/view/share_button.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/community/view/upvote.dart';
 
@@ -22,29 +21,15 @@ class PostCTA extends StatelessWidget {
 }
 
 class CommentButton extends StatelessWidget {
-  const CommentButton({
-    super.key,
-  });
+  const CommentButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const PostDetailedView(
-                  postLink: '',
-                ),
-              ),
-            );
-          },
-          icon: const Icon(Icons.comment_outlined),
-        ),
-        const Text("20"),
-      ],
+    return IconButton(
+      onPressed: () {},
+      icon: const Icon(
+        Icons.comment_outlined,
+      ),
     );
   }
 }
@@ -80,7 +65,6 @@ class CustomIcon extends StatelessWidget {
                 icon,
                 size: 25,
               ),
-              const SizedBox(width: 10),
               Text(
                 count,
                 style: const TextStyle(

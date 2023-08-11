@@ -35,7 +35,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Responsible Authority'),
+            title: const Text('Responsible Authority'),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -44,7 +44,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                                 Get.find<LocationController>().wardNo.value - 1]
                             .aeje !=
                         '')
-                  Text(
+                  const Text(
                     'AEJE',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
@@ -55,7 +55,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         '')
                   Row(
                     children: [
-                      Text('Name : ',
+                      const Text('Name : ',
                           style: TextStyle(fontWeight: FontWeight.bold)),
                       Text(wardauthorities[
                               Get.find<LocationController>().wardNo.value - 1]
@@ -81,7 +81,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                                 Get.find<LocationController>().wardNo.value - 1]
                             .skilledAssistant !=
                         '')
-                  Text(
+                  const Text(
                     'Skilled Assistant',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
@@ -92,7 +92,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         '')
                   Row(
                     children: [
-                      Text('Name : ',
+                      const Text('Name : ',
                           style: TextStyle(fontWeight: FontWeight.bold)),
                       Text(wardauthorities[
                               Get.find<LocationController>().wardNo.value - 1]
@@ -120,7 +120,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                                 Get.find<LocationController>().wardNo.value - 1]
                             .billCollector !=
                         '')
-                  Text(
+                  const Text(
                     'Bill Collector',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
@@ -131,7 +131,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         '')
                   Row(
                     children: [
-                      Text('Name : ',
+                      const Text('Name : ',
                           style: TextStyle(fontWeight: FontWeight.bold)),
                       Text(wardauthorities[
                               Get.find<LocationController>().wardNo.value - 1]
@@ -159,7 +159,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                                 Get.find<LocationController>().wardNo.value - 1]
                             .sanitaryInspector !=
                         '')
-                  Text(
+                  const Text(
                     'Sanitary Inspector',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
@@ -170,7 +170,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         '')
                   Row(
                     children: [
-                      Text('Name : ',
+                      const Text('Name : ',
                           style: TextStyle(fontWeight: FontWeight.bold)),
                       Text(wardauthorities[
                               Get.find<LocationController>().wardNo.value - 1]
@@ -196,7 +196,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                                 Get.find<LocationController>().wardNo.value - 1]
                             .sanitarySupervisor !=
                         '')
-                  Text(
+                  const Text(
                     'Sanitary Supervisor',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
@@ -207,7 +207,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         '')
                   Row(
                     children: [
-                      Text('Name : ',
+                      const Text('Name : ',
                           style: TextStyle(fontWeight: FontWeight.bold)),
                       Text(wardauthorities[
                               Get.find<LocationController>().wardNo.value - 1]
@@ -235,7 +235,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('Okay'),
+                child: const Text('Okay'),
               ),
             ],
           );
@@ -259,11 +259,11 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Align(
                     alignment: Alignment.topLeft,
-                    child: const Text(
+                    child: Text(
                       'Raise Complaint',
                       style: TextStyle(
                           color: AppColor.whatsAppTealGreen,
@@ -279,7 +279,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                       leading: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text('Ward No : ', style: TextStyle()),
+                          const Text('Ward No : ', style: TextStyle()),
                           Text(controller.wardNo.value.toString(),
                               style: const TextStyle(
                                   fontSize: 20,
@@ -325,30 +325,30 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
                     controller: nameController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         labelText: 'Name', border: OutlineInputBorder()),
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
                     controller: addressController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         labelText: 'Address', border: OutlineInputBorder()),
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
                     controller: issueController,
                     maxLines: null,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         labelText: 'Issue', border: OutlineInputBorder()),
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: DropdownButtonFormField<String>(
@@ -364,15 +364,17 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                       'Sanitation',
                       'Revenue',
                     ]
-                        .map((department) => DropdownMenuItem<String>(
-                              value: department,
-                              child: Text(department),
-                            ))
+                        .map(
+                          (department) => DropdownMenuItem<String>(
+                            value: department,
+                            child: Text(department),
+                          ),
+                        )
                         .toList(),
-                    decoration: InputDecoration(labelText: 'Department'),
+                    decoration: const InputDecoration(labelText: 'Department'),
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
@@ -386,7 +388,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                         onPressed: () {
                           showConfirmationDialog();
                         },
-                        child: Text("Register Complaint")),
+                        child: const Text("Register Complaint")),
                   ),
                 ),
               ],
@@ -394,7 +396,6 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
           ),
         ),
       );
-      ;
     }));
   }
 }
@@ -417,7 +418,7 @@ class WhatsaapButton extends StatelessWidget {
     final String message =
         'A complaint from MDU Ward Connect Mobile App\n\nName : $name\naddress : $address\nIssue : $issue';
 
-    final url = 'https://wa.me/$phoneNumber?text=${message}';
+    final url = 'https://wa.me/$phoneNumber?text=$message';
 
     if (await canLaunch(url)) {
       await launch(url);
@@ -449,9 +450,9 @@ class WhatsaapButton extends StatelessWidget {
                   width: 30,
                 ),
                 Text(phoneNo,
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                SizedBox()
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold)),
+                const SizedBox()
               ],
             )),
       ),
