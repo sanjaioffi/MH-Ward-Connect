@@ -13,7 +13,7 @@ class MainMapScreen extends StatefulWidget {
 }
 
 class _MainMapScreenState extends State<MainMapScreen> {
-  List<LatLng> ward1 = [
+  List<LatLng> ward1 = const [
     LatLng(9.963998223066397, 78.15515422186888),
     LatLng(9.960212053173095, 78.15361656978956),
     LatLng(9.961423632319821, 78.15223268291618),
@@ -23,7 +23,7 @@ class _MainMapScreenState extends State<MainMapScreen> {
     LatLng(9.96414966894784, 78.1411615879349),
     LatLng(9.96414966894784, 78.15515422186888),
   ];
-  List<LatLng> ward3 = [
+  List<LatLng> ward3 = const [
     LatLng(9.96203828817363, 78.0979895772756),
     LatLng(9.97733405887459, 78.09768204685975),
     LatLng(9.978999891534826, 78.11075208954611),
@@ -35,7 +35,7 @@ class _MainMapScreenState extends State<MainMapScreen> {
     LatLng(9.961886841311866, 78.10890690704889),
     LatLng(9.96203828817363, 78.09737451644185),
   ];
-  List<LatLng> ward4 = [
+  List<LatLng> ward4 = const [
     LatLng(9.97566821769503, 78.11997800203011),
     LatLng(9.975971098542985, 78.12612861035342),
     LatLng(9.971579298683523, 78.12597484514549),
@@ -48,7 +48,7 @@ class _MainMapScreenState extends State<MainMapScreen> {
     LatLng(9.963249860537687, 78.1187478803646),
     LatLng(9.97566821769503, 78.11951670640633),
   ];
-  List<LatLng> ward5 = [
+  List<LatLng> ward5 = const [
     LatLng(9.958706440970843, 78.13304804471642),
     LatLng(9.956586156855352, 78.1322792186748),
     LatLng(9.955828909189862, 78.13335557513227),
@@ -60,7 +60,7 @@ class _MainMapScreenState extends State<MainMapScreen> {
     LatLng(9.96612732686475, 78.1345856967958),
     LatLng(9.95931223390157, 78.13304804471642),
   ];
-  List<LatLng> ward6 = [
+  List<LatLng> ward6 = const [
     LatLng(9.976122538861347, 78.12643614076933),
     LatLng(9.978242695927293, 78.1276662624328),
     LatLng(9.975062455153264, 78.13258674909264),
@@ -80,7 +80,7 @@ class _MainMapScreenState extends State<MainMapScreen> {
     LatLng(9.97566821769503, 78.12612861035342),
   ];
 
-  List<LatLng> ward7 = [
+  List<LatLng> ward7 = const [
     LatLng(9.978999891534826, 78.12782002764072),
     LatLng(9.984451647923677, 78.12951144492996),
     LatLng(9.986117444162616, 78.13366310554818),
@@ -95,7 +95,7 @@ class _MainMapScreenState extends State<MainMapScreen> {
     LatLng(9.978394135189433, 78.12797379284865),
     LatLng(9.979605646752319, 78.12812755805862),
   ];
-  List<LatLng> ward8 = [
+  List<LatLng> ward8 = const [
     LatLng(9.964604006170234, 78.14070029231112),
     LatLng(9.964755451771367, 78.15515422186888),
     LatLng(9.97611367127719, 78.16730167330763),
@@ -103,7 +103,7 @@ class _MainMapScreenState extends State<MainMapScreen> {
     LatLng(9.967935793128277, 78.13808628377222),
     LatLng(9.964604006170234, 78.1411615879349),
   ];
-  List<LatLng> ward9 = [
+  List<LatLng> ward9 = const [
     LatLng(9.97538811996236, 78.16791783718895),
     LatLng(9.968125666066143, 78.16817210784166),
     LatLng(9.972633415123596, 78.17605449808525),
@@ -122,7 +122,7 @@ class _MainMapScreenState extends State<MainMapScreen> {
     LatLng(9.974887266270073, 78.16740929588349),
     LatLng(9.972883843798456, 78.16766356653619),
   ];
-  List<LatLng> ward10 = [
+  List<LatLng> ward10 = const [
     LatLng(9.968874550280816, 78.1601572863537),
     LatLng(9.965016721871208, 78.16197586742015),
     LatLng(9.947380353917552, 78.15763925103153),
@@ -134,7 +134,7 @@ class _MainMapScreenState extends State<MainMapScreen> {
     LatLng(9.964327819138546, 78.15596056081614),
     LatLng(9.968461213706505, 78.1597376138003),
   ];
-  List<LatLng> ward11 = [
+  List<LatLng> ward11 = const [
     LatLng(9.963998223066397, 78.15515422186888),
     LatLng(9.960212053173095, 78.15361656978956),
     LatLng(9.961423632319821, 78.15223268291618),
@@ -144,7 +144,7 @@ class _MainMapScreenState extends State<MainMapScreen> {
     LatLng(9.96414966894784, 78.1411615879349),
     LatLng(9.96414966894784, 78.15515422186888),
   ];
-  List<LatLng> ward12 = [
+  List<LatLng> ward12 = const [
     LatLng(9.959303365860123, 78.1411615879349),
     LatLng(9.958849021255176, 78.14439065730357),
     LatLng(9.950670710207817, 78.14439065730357),
@@ -153,110 +153,108 @@ class _MainMapScreenState extends State<MainMapScreen> {
     LatLng(9.959000469527112, 78.14039276189322),
   ];
   List<LatLng> ward13 = [
-    LatLng(9.951154947920756, 78.14224269620831),
-    LatLng(9.950156693191985, 78.14224269620831),
-    LatLng(9.948390542735908, 78.14068346407663),
-    LatLng(9.94531895398238, 78.14411377476841),
-    LatLng(9.94892806779913, 78.14746612385574),
-    LatLng(9.951692468433336, 78.14473746762314),
-    LatLng(9.950233482125554, 78.14465950601658),
-    LatLng(9.950847792943861, 78.14247658103011),
+    const LatLng(9.951154947920756, 78.14224269620831),
+    const LatLng(9.950156693191985, 78.14224269620831),
+    const LatLng(9.948390542735908, 78.14068346407663),
+    const LatLng(9.94531895398238, 78.14411377476841),
+    const LatLng(9.94892806779913, 78.14746612385574),
+    const LatLng(9.951692468433336, 78.14473746762314),
+    const LatLng(9.950233482125554, 78.14465950601658),
+    const LatLng(9.950847792943861, 78.14247658103011),
   ];
   List<LatLng> ward14 = [
-    LatLng(9.944013520018686, 78.15183197382856),
-    LatLng(9.939252481378801, 78.14559504529558),
-    LatLng(9.94132584543928, 78.14504931404946),
-    LatLng(9.946701172495693, 78.1398258864021),
-    LatLng(9.948083385160402, 78.14044957925688),
-    LatLng(9.9450117935191, 78.1442696979816),
-    LatLng(9.948544121415381, 78.14746612385574),
-    LatLng(9.944320681420209, 78.15167605061544),
+    const LatLng(9.944013520018686, 78.15183197382856),
+    const LatLng(9.939252481378801, 78.14559504529558),
+    const LatLng(9.94132584543928, 78.14504931404946),
+    const LatLng(9.946701172495693, 78.1398258864021),
+    const LatLng(9.948083385160402, 78.14044957925688),
+    const LatLng(9.9450117935191, 78.1442696979816),
+    const LatLng(9.948544121415381, 78.14746612385574),
+    const LatLng(9.944320681420209, 78.15167605061544),
   ];
   List<LatLng> ward16 = [
-    LatLng(9.95861108047012, 78.13259030828078),
-    LatLng(9.942140458473872, 78.13033563496123),
-    LatLng(9.945564195466332, 78.12592023304376),
-    LatLng(9.947507381584686, 78.12169272057059),
-    LatLng(9.946489523630149, 78.1202835497462),
-    LatLng(9.947877510963309, 78.11971988141693),
-    LatLng(9.950283341704036, 78.12272611250876),
-    LatLng(9.949543087979634, 78.12620206720959),
-    LatLng(9.956112781148164, 78.13108719273362),
-    LatLng(9.958426021917035, 78.13136902689939),
-    LatLng(9.958888668104137, 78.13249636355795),
+    const LatLng(9.95861108047012, 78.13259030828078),
+    const LatLng(9.942140458473872, 78.13033563496123),
+    const LatLng(9.945564195466332, 78.12592023304376),
+    const LatLng(9.947507381584686, 78.12169272057059),
+    const LatLng(9.946489523630149, 78.1202835497462),
+    const LatLng(9.947877510963309, 78.11971988141693),
+    const LatLng(9.950283341704036, 78.12272611250876),
+    const LatLng(9.949543087979634, 78.12620206720959),
+    const LatLng(9.956112781148164, 78.13108719273362),
+    const LatLng(9.958426021917035, 78.13136902689939),
+    const LatLng(9.958888668104137, 78.13249636355795),
   ];
   List<LatLng> ward17 = [
-    LatLng(9.948340172098042, 78.1196259366954),
-    LatLng(9.950838530897556, 78.12300794667345),
-    LatLng(9.949913215051552, 78.12620206720959),
-    LatLng(9.955927721177275, 78.13118113745514),
-    LatLng(9.961294417698753, 78.12169272057059),
-    LatLng(9.949080428548655, 78.1202835497462),
+    const LatLng(9.948340172098042, 78.1196259366954),
+    const LatLng(9.950838530897556, 78.12300794667345),
+    const LatLng(9.949913215051552, 78.12620206720959),
+    const LatLng(9.955927721177275, 78.13118113745514),
+    const LatLng(9.961294417698753, 78.12169272057059),
+    const LatLng(9.949080428548655, 78.1202835497462),
   ];
   List<LatLng> ward18 = [
-    LatLng(9.96157200304863, 78.12150483112748),
-    LatLng(9.948247639923764, 78.11971988141693),
-    LatLng(9.942973262665348, 78.11173458007829),
-    LatLng(9.943435930743007, 78.10994963036649),
-    LatLng(9.95407711570877, 78.11699548448968),
-    LatLng(9.956390370906007, 78.11370741923196),
-    LatLng(9.96157200304863, 78.11380136395348),
-    LatLng(9.962959926256104, 78.11878043420023),
-    LatLng(9.961479474624909, 78.12131694168437),
+    const LatLng(9.96157200304863, 78.12150483112748),
+    const LatLng(9.948247639923764, 78.11971988141693),
+    const LatLng(9.942973262665348, 78.11173458007829),
+    const LatLng(9.943435930743007, 78.10994963036649),
+    const LatLng(9.95407711570877, 78.11699548448968),
+    const LatLng(9.956390370906007, 78.11370741923196),
+    const LatLng(9.96157200304863, 78.11380136395348),
+    const LatLng(9.962959926256104, 78.11878043420023),
+    const LatLng(9.961479474624909, 78.12131694168437),
   ];
   List<LatLng> ward19 = [
-    LatLng(9.961548250153143, 78.1006494892452),
-    LatLng(9.95795856901762, 78.10080134787995),
-    LatLng(9.948685043358921, 78.1003457719757),
-    LatLng(9.943599449752853, 78.10960914870361),
-    LatLng(9.954368848396854, 78.11644278727351),
-    LatLng(9.955714998255928, 78.11462048365644),
-    LatLng(9.957808998113492, 78.10869799689505),
-    LatLng(9.961548250153143, 78.10854613826035),
-    LatLng(9.96184738846462, 78.1003457719757),
+    const LatLng(9.961548250153143, 78.1006494892452),
+    const LatLng(9.95795856901762, 78.10080134787995),
+    const LatLng(9.948685043358921, 78.1003457719757),
+    const LatLng(9.943599449752853, 78.10960914870361),
+    const LatLng(9.954368848396854, 78.11644278727351),
+    const LatLng(9.955714998255928, 78.11462048365644),
+    const LatLng(9.957808998113492, 78.10869799689505),
+    const LatLng(9.961548250153143, 78.10854613826035),
+    const LatLng(9.96184738846462, 78.1003457719757),
   ];
   List<LatLng> ward38 = [
-    LatLng(9.916857867091124, 78.16023830175999),
-    LatLng(9.920214096868008, 78.14939735630043),
-    LatLng(9.918383430342914, 78.14738403785782),
-    LatLng(9.914264393266805, 78.15094606279524),
-    LatLng(9.91212857588657, 78.15714088877036),
-    LatLng(9.916400196731303, 78.15992856046142),
+    const LatLng(9.916857867091124, 78.16023830175999),
+    const LatLng(9.920214096868008, 78.14939735630043),
+    const LatLng(9.918383430342914, 78.14738403785782),
+    const LatLng(9.914264393266805, 78.15094606279524),
+    const LatLng(9.91212857588657, 78.15714088877036),
+    const LatLng(9.916400196731303, 78.15992856046142),
   ];
   List<LatLng> ward36 = [
-    LatLng(9.941255525861607, 78.17211639815514),
-    LatLng(9.928580080372967, 78.16811463477268),
-    LatLng(9.926725095942786, 78.14967513682501),
-    LatLng(9.929584859215723, 78.14912587518455),
-    LatLng(9.93082150586666, 78.146222635083),
-    LatLng(9.940791798709128, 78.15006746657025),
-    LatLng(9.946897486856471, 78.16089576749005),
-    LatLng(9.948288640350114, 78.16693764554117),
-    LatLng(9.948365926481529, 78.16944855589952),
-    LatLng(9.941564676931165, 78.17188100030921),
+    const LatLng(9.941255525861607, 78.17211639815514),
+    const LatLng(9.928580080372967, 78.16811463477268),
+    const LatLng(9.926725095942786, 78.14967513682501),
+    const LatLng(9.929584859215723, 78.14912587518455),
+    const LatLng(9.93082150586666, 78.146222635083),
+    const LatLng(9.940791798709128, 78.15006746657025),
+    const LatLng(9.946897486856471, 78.16089576749005),
+    const LatLng(9.948288640350114, 78.16693764554117),
+    const LatLng(9.948365926481529, 78.16944855589952),
+    const LatLng(9.941564676931165, 78.17188100030921),
   ];
   List<LatLng> ward37 = [
-    LatLng(9.926788112308131, 78.14971182898779),
-    LatLng(9.92206069503635, 78.14971182898779),
-    LatLng(9.922257672118334, 78.159110327458),
-    LatLng(9.925015338829198, 78.15871039135328),
-    LatLng(9.926788112308131, 78.1617099121413),
-    LatLng(9.926000214169775, 78.14951186093543),
+    const LatLng(9.926788112308131, 78.14971182898779),
+    const LatLng(9.92206069503635, 78.14971182898779),
+    const LatLng(9.922257672118334, 78.159110327458),
+    const LatLng(9.925015338829198, 78.15871039135328),
+    const LatLng(9.926788112308131, 78.1617099121413),
+    const LatLng(9.926000214169775, 78.14951186093543),
   ];
 
   List<LatLng> ward57 = [
-    LatLng(9.938539227841474, 78.09820789038008),
-    LatLng(9.931514407522556, 78.11522305354845),
-    LatLng(9.918736591885008, 78.10915824291402),
-    LatLng(9.93035280852665, 78.09596166421954),
-    LatLng(9.938317975959265, 78.09815173472606),
+    const LatLng(9.938539227841474, 78.09820789038008),
+    const LatLng(9.931514407522556, 78.11522305354845),
+    const LatLng(9.918736591885008, 78.10915824291402),
+    const LatLng(9.93035280852665, 78.09596166421954),
+    const LatLng(9.938317975959265, 78.09815173472606),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // leading: IconButton(
-        //     onPressed: () => Get.back(), icon: Icon(Icons.arrow_back_ios)),
         title: const Text('Ward Map',
             style: TextStyle(
                 color: AppColor.white,
@@ -266,14 +264,15 @@ class _MainMapScreenState extends State<MainMapScreen> {
       ),
       body: GoogleMap(
         initialCameraPosition: CameraPosition(
-            target: LatLng(
-              Get.find<LocationController>().coordinates[0],
-              Get.find<LocationController>().coordinates[1],
-            ),
-            zoom: 20),
+          target: LatLng(
+            Get.find<LocationController>().coordinates[0],
+            Get.find<LocationController>().coordinates[1],
+          ),
+          zoom: 20,
+        ),
         markers: {
           Marker(
-            markerId: MarkerId('Main Marker'),
+            markerId: const MarkerId('Main Marker'),
             position: LatLng(
               Get.find<LocationController>().coordinates[0],
               Get.find<LocationController>().coordinates[1],
@@ -284,67 +283,67 @@ class _MainMapScreenState extends State<MainMapScreen> {
         },
         polygons: {
           Polygon(
-              polygonId: PolygonId('ward 1'),
+              polygonId: const PolygonId('ward 1'),
               points: ward1,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 3'),
+              polygonId: const PolygonId('ward 3'),
               points: ward3,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 4'),
+              polygonId: const PolygonId('ward 4'),
               points: ward4,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 5'),
+              polygonId: const PolygonId('ward 5'),
               points: ward5,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 6'),
+              polygonId: const PolygonId('ward 6'),
               points: ward6,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 7'),
+              polygonId: const PolygonId('ward 7'),
               points: ward7,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 8'),
+              polygonId: const PolygonId('ward 8'),
               points: ward8,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 9'),
+              polygonId: const PolygonId('ward 9'),
               points: ward9,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 10'),
+              polygonId: const PolygonId('ward 10'),
               points: ward10,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 11'),
+              polygonId: const PolygonId('ward 11'),
               points: ward11,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 12'),
+              polygonId: const PolygonId('ward 12'),
               points: ward12,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 13'),
+              polygonId: const PolygonId('ward 13'),
               points: ward13,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 14'),
+              polygonId: const PolygonId('ward 14'),
               points: ward14,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
@@ -354,43 +353,43 @@ class _MainMapScreenState extends State<MainMapScreen> {
           //     strokeWidth: 2,
           //     fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 16'),
+              polygonId: const PolygonId('ward 16'),
               points: ward16,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 17'),
+              polygonId: const PolygonId('ward 17'),
               points: ward17,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 18'),
+              polygonId: const PolygonId('ward 18'),
               points: ward18,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 19'),
+              polygonId: const PolygonId('ward 19'),
               points: ward19,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 36'),
+              polygonId: const PolygonId('ward 36'),
               points: ward36,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 37'),
+              polygonId: const PolygonId('ward 37'),
               points: ward37,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
           Polygon(
-              polygonId: PolygonId('ward 38'),
+              polygonId: const PolygonId('ward 38'),
               points: ward38,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5)),
 
           Polygon(
-              polygonId: PolygonId('57'),
+              polygonId: const PolygonId('57'),
               points: ward57,
               strokeWidth: 2,
               fillColor: Colors.green.withOpacity(0.5))

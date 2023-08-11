@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:madurai_ward_connect/src/constants/globals.dart';
 
 class LocationController extends GetxController {
   RxBool isLoading = false.obs;
@@ -148,11 +150,10 @@ class LocationController extends GetxController {
   }
 
   void getLocation() async {
-    print('getting_location');
     try {
       isLoading.value = true;
       Location location = Location();
-      
+
       bool serviceEnabled = await location.serviceEnabled();
 
       if (!serviceEnabled) {
@@ -175,13 +176,12 @@ class LocationController extends GetxController {
       LocationData currentLocation = await location.getLocation();
       locationData.value =
           '${currentLocation.latitude} <-> ${currentLocation.longitude}';
-      
-      coordinates.value = [
-        currentLocation.latitude,
-        currentLocation.longitude
-      ];
 
-      print(currentLocation);
+      coordinates.value = [currentLocation.latitude, currentLocation.longitude];
+
+      myLocation =
+          LatLng(currentLocation.latitude!, currentLocation.longitude!);
+
       isLoading.value = false;
     } catch (e) {
       isLoading.value = false;

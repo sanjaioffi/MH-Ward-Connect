@@ -49,33 +49,23 @@ class MainScreenState extends State<MainScreen> {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        // Permissions are denied, next time you could try
-        // requesting permissions again (this is also where
-        // Android's shouldShowRequestPermissionRationale
-        // returned true. According to Android guidelines
-        // your App should show an explanatory UI now.
         return Future.error('Location permissions are denied');
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      // Permissions are denied forever, handle appropriately.
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }
 
-    // When we reach here, permissions are granted and we can
-    // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition();
   }
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
-
     LocationController locationController = Get.put(LocationController());
     locationController.getLocation();
+    super.initState();
   }
 
   @override
@@ -241,11 +231,11 @@ class MainScreenState extends State<MainScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Post',
+                    const Text('Post',
                         style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
@@ -254,7 +244,7 @@ class MainScreenState extends State<MainScreen> {
                         onPressed: () {
                           Get.back();
                         },
-                        icon: Icon(Icons.close))
+                        icon: const Icon(Icons.close))
                   ],
                 ),
               ),
