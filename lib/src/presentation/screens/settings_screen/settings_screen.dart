@@ -21,7 +21,7 @@ class _SettingsPageState extends State<SettingsPage> {
   List<String> languages = ["English", "தமிழ்"]; // Add more languages if needed
   List<String> themes = ["Light", "Dark"]; // Add more themes if needed
   // final AuthController _authController = Get.find();
-  String userId = Get.find<AuthController>().authorizedUser!.uid;
+  String userId = Get.find<AuthController>().uid!;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class _SettingsPageState extends State<SettingsPage> {
               String bloodGroup = userDetails['bloodGroup'] ?? '';
               String lastBloodDonated = userDetails['lastBloodDonated'] ?? '';
               String phoneNumber =
-                  Get.find<AuthController>().authorizedUser!.phoneNumber ?? '';
+                  Get.find<AuthController>().uid!;
 
               return Padding(
                 padding: const EdgeInsets.all(16.0),

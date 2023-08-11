@@ -9,6 +9,7 @@ import 'package:madurai_ward_connect/src/presentation/screens/onboarding/persona
 import 'package:madurai_ward_connect/src/presentation/screens/main_page.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 import 'package:pinput/pinput.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -280,7 +281,7 @@ class _LoginState extends State<Login> {
         });
       },
     ).whenComplete(
-      () {
+      () async{
         if (user != null) {
           Get.offAll(MainScreen());
           Fluttertoast.showToast(
@@ -292,6 +293,7 @@ class _LoginState extends State<Login> {
             textColor: Colors.white,
             fontSize: 16.0,
           );
+          print(isNewUser);
           if (isNewUser != null && isNewUser) {
             Navigator.push(
               context,
@@ -307,7 +309,9 @@ class _LoginState extends State<Login> {
               ),
             );
           }
-          _authController.setAuthorizedUser(user!);
+          _authController.setuid(user!.uid);
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('uid', user!.uid);
         } else {
           Fluttertoast.showToast(
             msg: "your login is failed",

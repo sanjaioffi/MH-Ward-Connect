@@ -40,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
         ],
       ),
       body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-        stream: getUserDetailsStream(_authController.authorizedUser!.uid),
+        stream: getUserDetailsStream(_authController.uid!),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -120,7 +120,7 @@ class ProfileScreen extends StatelessWidget {
                       height: 3,
                     ),
                     Text(
-                      'Emergency contact: ${_authController.authorizedUser!.phoneNumber}',
+                      'Emergency contact: ${_authController.uid!}',
                       style: TextStyle(
                           color: AppColor.black,
                           fontSize: 18,

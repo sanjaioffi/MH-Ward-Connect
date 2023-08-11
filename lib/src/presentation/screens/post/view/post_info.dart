@@ -16,7 +16,7 @@ class PostUserInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-      stream: getUserDetailsStream(_authController.authorizedUser!.uid),
+      stream: getUserDetailsStream(_authController.uid!),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(

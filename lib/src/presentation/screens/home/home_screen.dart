@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,7 @@ import 'package:geolocator/geolocator.dart';
 
 import '../complaint/complaint_screen.dart';
 import '../ward_info/ward_info_screen.dart';
+import '../zone_info/zone_info.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -162,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      'Ward Connect',
+                      'Marvel Madurai',
                       style: TextStyle(
                           color: AppColor.whatsAppTealGreen,
                           fontSize: 30,
@@ -485,7 +488,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             InkWell(
                               borderRadius: BorderRadius.circular(30),
                               onTap: () {
-                                // Get.to(() => ComplaintScreen());
+                                Get.to(() => ZoneInfoScreen());
                               },
                               child: CircleAvatar(
                                   backgroundColor: AppColor.winterGreen,

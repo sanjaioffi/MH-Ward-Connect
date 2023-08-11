@@ -227,6 +227,7 @@ class MainScreenState extends State<MainScreen> {
 
   void _showOptionsBottomSheet(BuildContext context) {
     showModalBottomSheet(
+      useSafeArea: true,
       backgroundColor: AppColor.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
@@ -239,7 +240,7 @@ class MainScreenState extends State<MainScreen> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -249,7 +250,11 @@ class MainScreenState extends State<MainScreen> {
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
                             color: AppColor.black)),
-                    Icon(Icons.close, color: AppColor.black)
+                    IconButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        icon: Icon(Icons.close))
                   ],
                 ),
               ),

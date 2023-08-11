@@ -296,7 +296,7 @@ class OnboardingScreen extends StatelessWidget {
                       print([name, age, address, bloodGroup]);
 
                       saveUserDetails(
-                          authController.authorizedUser!.uid,
+                          authController.uid!,
                           name.text,
                           address.text,
                           age.text,
