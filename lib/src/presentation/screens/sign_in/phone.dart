@@ -263,7 +263,11 @@ class _LoginState extends State<Login> {
           fontSize: 16.0,
         );
       },
-      codeAutoRetrievalTimeout: (String verificationId) {},
+      codeAutoRetrievalTimeout: (String verificationId) {
+           setState(() {
+          verificationID = verificationId;
+        });
+      },
     );
   }
 

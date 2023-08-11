@@ -202,7 +202,7 @@ class MainScreenState extends State<MainScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Icon(Icons.person_4_rounded,
+                        Icon(Icons.person,
                             color: currentTab == 3
                                 ? AppColor.whatsAppTealGreen
                                 : AppColor.grey),

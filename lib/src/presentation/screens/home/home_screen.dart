@@ -7,8 +7,11 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import 'package:madurai_ward_connect/src/controller/location_controller.dart';
 import 'package:madurai_ward_connect/src/data/models/councillor_model.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/about_madurI/about_madurai_screen.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/blood_bank/blood_bank.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/chat/chat_screen.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/map/main_map.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/map/test_map.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 import 'package:marquee/marquee.dart';
 import 'package:geolocator/geolocator.dart';
@@ -176,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ChatScreen(),
+                            builder: (context) => MapScreen(),
                           ),
                         );
                       },
@@ -463,7 +466,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             InkWell(
                               borderRadius: BorderRadius.circular(30),
                               onTap: () {
-                                // Get.to(() => ComplaintScreen());
+                                Get.to(() => BloodBankScreen());
                               },
                               child: CircleAvatar(
                                   backgroundColor: AppColor.winterGreen,
@@ -513,7 +516,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             InkWell(
                               borderRadius: BorderRadius.circular(30),
                               onTap: () {
-                                // Get.to(() => ComplaintScreen());
+                                Get.to(() => AboutMaduraiScreen());
                               },
                               child: CircleAvatar(
                                   backgroundColor: AppColor.winterGreen,

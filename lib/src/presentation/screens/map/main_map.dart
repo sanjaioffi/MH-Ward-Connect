@@ -251,6 +251,8 @@ class _MainMapScreenState extends State<MainMapScreen> {
     LatLng(9.93035280852665, 78.09596166421954),
     LatLng(9.938317975959265, 78.09815173472606),
   ];
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -279,122 +281,123 @@ class _MainMapScreenState extends State<MainMapScreen> {
               Get.find<LocationController>().coordinates[1],
             ),
             draggable: true,
-            onDrag: (value) => print(value),
+            onDragEnd: (value) => print(value),
           ),
         },
-        polygons: {
-          Polygon(
-              polygonId: PolygonId('ward 1'),
-              points: ward1,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 3'),
-              points: ward3,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 4'),
-              points: ward4,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 5'),
-              points: ward5,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 6'),
-              points: ward6,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 7'),
-              points: ward7,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 8'),
-              points: ward8,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 9'),
-              points: ward9,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 10'),
-              points: ward10,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 11'),
-              points: ward11,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 12'),
-              points: ward12,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 13'),
-              points: ward13,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 14'),
-              points: ward14,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          // Polygon(
-          //     polygonId: PolygonId('ward 15'),
-          //     points: ward15,
-          //     strokeWidth: 2,
-          //     fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 16'),
-              points: ward16,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 17'),
-              points: ward17,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 18'),
-              points: ward18,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 19'),
-              points: ward19,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 36'),
-              points: ward36,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 37'),
-              points: ward37,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
-          Polygon(
-              polygonId: PolygonId('ward 38'),
-              points: ward38,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5)),
+        // polygons: for 
+        // polygons: {
+        //   Polygon(
+        //       polygonId: PolygonId('ward 1'),
+        //       points: ward1,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 3'),
+        //       points: ward3,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 4'),
+        //       points: ward4,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 5'),
+        //       points: ward5,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 6'),
+        //       points: ward6,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 7'),
+        //       points: ward7,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 8'),
+        //       points: ward8,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 9'),
+        //       points: ward9,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 10'),
+        //       points: ward10,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 11'),
+        //       points: ward11,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 12'),
+        //       points: ward12,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 13'),
+        //       points: ward13,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 14'),
+        //       points: ward14,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   // Polygon(
+        //   //     polygonId: PolygonId('ward 15'),
+        //   //     points: ward15,
+        //   //     strokeWidth: 2,
+        //   //     fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 16'),
+        //       points: ward16,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 17'),
+        //       points: ward17,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 18'),
+        //       points: ward18,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 19'),
+        //       points: ward19,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 36'),
+        //       points: ward36,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 37'),
+        //       points: ward37,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
+        //   Polygon(
+        //       polygonId: PolygonId('ward 38'),
+        //       points: ward38,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5)),
 
-          Polygon(
-              polygonId: PolygonId('57'),
-              points: ward57,
-              strokeWidth: 2,
-              fillColor: Colors.green.withOpacity(0.5))
-        },
+        //   Polygon(
+        //       polygonId: PolygonId('57'),
+        //       points: ward57,
+        //       strokeWidth: 2,
+        //       fillColor: Colors.green.withOpacity(0.5))
+        // },
       ),
     );
   }

@@ -28,7 +28,7 @@ class _UpVoteButtonState extends State<UpVoteButton> {
             });
           },
           icon: Icon(
-            Icons.ios_share,
+            Icons.arrow_upward_rounded,
             color: isLiked ? AppColor.whatsAppTealGreen : AppColor.black,
           ),
         ),
