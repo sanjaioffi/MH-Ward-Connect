@@ -10,13 +10,19 @@ import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 
 // show online users to get quick response for emeregeency
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  var cordinates = [];
+
+  @override
   Widget build(BuildContext context) {
-    var cordinates = [];
-    final AuthController _authController = Get.find();
+    final AuthController authController = Get.find();
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection('issues');
 
@@ -25,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
         child: Scaffold(
       appBar: AppBar(
         // leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
-        title: Text(
+        title: const Text(
           'User Profile',
           style: TextStyle(
             fontSize: 25,
@@ -40,11 +46,11 @@ class ProfileScreen extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => SettingsPage()));
               },
-              icon: Icon(Icons.settings))
+              icon: const Icon(Icons.settings))
         ],
       ),
       body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-        stream: getUserDetailsStream(_authController.uid!),
+        stream: getUserDetailsStream(authController.uid!),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -79,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
                           radius: 31,
                           fontsize: 21,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 20,
                         ),
                         // Image.asset(
@@ -89,7 +95,7 @@ class ProfileScreen extends StatelessWidget {
                         // )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Column(
@@ -97,7 +103,7 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         Text(
                           name,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: AppColor.whatsAppTealGreen,
                               fontSize: 22,
                               fontWeight: FontWeight.bold),
@@ -108,26 +114,26 @@ class ProfileScreen extends StatelessWidget {
                     //     ? Text(
                     //         'Authorized User: ${_authController.authorizedUser!.uid}')
                     //     : Text('User not authorized.'),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
-                    Text(
+                    const Text(
                       'Emergency Informations',
                       style: TextStyle(
                           color: Colors.red,
                           fontSize: 18,
                           fontWeight: FontWeight.w500),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
 
-                    SizedBox(
+                    const SizedBox(
                       height: 3,
                     ),
                     Text(
-                      'Emergency contact: ${phoneNo}',
-                      style: TextStyle(
+                      'Emergency contact: $phoneNo',
+                      style: const TextStyle(
                           color: AppColor.black,
                           fontSize: 18,
                           fontWeight: FontWeight.w500),
@@ -159,23 +165,23 @@ class ProfileScreen extends StatelessWidget {
 
                     Text(
                       'Emergency address : $address',
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: AppColor.black,
                           fontSize: 18,
                           fontWeight: FontWeight.w500),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     InkWell(
                       onTap: () {},
-                      child: SizedBox(
+                      child: const SizedBox(
                         width: double.infinity,
                         child: Card(
                           elevation: 3,
                           child: Center(
                               child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(8.0),
                             child: Text(
                               'Complaints',
                               style: TextStyle(
@@ -192,18 +198,32 @@ class ProfileScreen extends StatelessWidget {
                         onPressed: () async {
                           for (var element in complaints) {
                             cordinates.add(await returnStatus(element));
+                            setState(() {});
                           }
                         },
-                        icon: Icon(Icons.refresh)),
+                        icon: const Icon(Icons.refresh)),
 
-                    ListView.builder(
-                      itemCount: cordinates.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                            title: Text(
-                          "Status : ${statusMap[cordinates[index]]}",
-                        ));
-                      },
+                    SizedBox(
+                      height: 200,
+                      child: ListView.builder(
+                        itemCount: cordinates.length,
+                        itemBuilder: (context, index) {
+                          return Expanded(
+                            child: Container(
+                              height: 290,
+                              width: 100,
+                              color: Colors.green,
+                            ),
+                            // child: ListTile(
+                            //     title: Text(
+                            //   "Status : ${statusMap[cordinates[index]]}",
+                            //   style: const TextStyle(
+                            //     color: Colors.black,
+                            //   ),
+                            // )),
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),

@@ -14,6 +14,9 @@ returnStatus(
 
     if (docSnapshot.exists) {
       dynamic fieldValue = docSnapshot.get('status');
+      print(
+        fieldValue.toString(),
+      );
       return fieldValue;
     } else {}
   } catch (e) {
