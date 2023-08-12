@@ -314,6 +314,7 @@ class _LoginState extends State<Login> {
             );
           }
           _authController.setuid(user!.uid);
+          _authController.setUserPhone(user!.phoneNumber!);
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('uid', user!.uid);
         } else {

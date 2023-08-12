@@ -8,17 +8,33 @@ import 'package:madurai_ward_connect/src/controller/user_controller.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/main_page.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 
-class OnboardingScreen extends StatelessWidget {
+class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
   @override
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
+}
+
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  String bloodGroup = 'A+';
+  TextEditingController name = TextEditingController();
+  TextEditingController age = TextEditingController();
+  TextEditingController address = TextEditingController();
+
+  TextEditingController lastDonated = TextEditingController();
+  final AuthController authController = Get.find();
+  @override
   Widget build(BuildContext context) {
-    TextEditingController name = TextEditingController();
-    TextEditingController age = TextEditingController();
-    TextEditingController address = TextEditingController();
-    TextEditingController bloodGroup = TextEditingController();
-    TextEditingController lastDonated = TextEditingController();
-    final AuthController authController = Get.find();
+    final List<String> bloodGroups = [
+      'A+',
+      'A-',
+      'B+',
+      'B-',
+      'AB+',
+      'AB-',
+      'O+',
+      'O-',
+    ];
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -205,31 +221,32 @@ class OnboardingScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: AppColor.grey,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 25),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.grey),
                       ),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(15),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 5,
-                      ),
-                      child: TextField(
-                        controller: bloodGroup,
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.bloodtype),
-                          border: InputBorder.none,
-                          hintText: "Enter your blood group",
-                          prefixIconColor: AppColor.whatsAppTealGreen,
-                        ),
+                      child: DropdownButton<String>(
+                        isExpanded: true,
+                        value: bloodGroup,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            bloodGroup = newValue!;
+                          });
+                        },
+                        items: bloodGroups
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
                 ],
               ),
             ),
@@ -246,7 +263,7 @@ class OnboardingScreen extends StatelessWidget {
                       vertical: 10,
                     ),
                     child: Text(
-                      'Last Date of Blood Donation',
+                      'Last Date of Blood Donation ',
                       style: TextStyle(
                         color: AppColor.whatsAppTealGreen,
                         fontWeight: FontWeight.bold,
@@ -272,7 +289,7 @@ class OnboardingScreen extends StatelessWidget {
                         decoration: const InputDecoration(
                           prefixIcon: Icon(Icons.history),
                           border: InputBorder.none,
-                          hintText: "Enter last date you donated blood",
+                          hintText: "dd/mm/yyyy",
                           prefixIconColor: AppColor.whatsAppTealGreen,
                         ),
                       ),
@@ -300,8 +317,9 @@ class OnboardingScreen extends StatelessWidget {
                           name.text,
                           address.text,
                           age.text,
-                          bloodGroup.text,
-                          lastDonated.text);
+                          bloodGroup,
+                          lastDonated.text,
+                          authController.userPhone!);
 
                       // Navigator.pushReplacement(
                       //     context,
@@ -323,8 +341,14 @@ class OnboardingScreen extends StatelessWidget {
     );
   }
 
-  Future<void> saveUserDetails(String userId, String name, String address,
-      String age, String bloodGroup, String lastBloodDonated) async {
+  Future<void> saveUserDetails(
+      String userId,
+      String name,
+      String address,
+      String age,
+      String bloodGroup,
+      String lastBloodDonated,
+      String phone) async {
     try {
       await FirebaseFirestore.instance.collection('users').doc(userId).set({
         'name': name,
@@ -332,6 +356,7 @@ class OnboardingScreen extends StatelessWidget {
         'age': age,
         'bloodGroup': bloodGroup,
         'lastBloodDonated': lastBloodDonated,
+        'phoneNo': phone,
         'posts': []
       });
     } catch (e) {

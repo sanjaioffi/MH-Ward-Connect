@@ -16,7 +16,7 @@ AppBar buildNewPostAppBar(BuildContext context) {
     ],
     centerTitle: true,
     title: const Text(
-      "புதிய பதிவு",
+      "New Post",
       style: TextStyle(
         color: Colors.black,
       ),

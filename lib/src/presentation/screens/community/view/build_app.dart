@@ -12,7 +12,7 @@ AppBar buildApp(context) {
         horizontal: 5,
       ),
       child: Text(
-        "குழுமம்",
+        "Community",
         style: TextStyle(
           fontSize: 25,
           fontWeight: FontWeight.bold,
@@ -24,32 +24,5 @@ AppBar buildApp(context) {
     actionsIconTheme: const IconThemeData(
       size: 25,
     ),
-    actions: const [
-      Padding(
-        padding: EdgeInsets.only(right: 15),
-        child: Icon(
-          Icons.search,
-          color: AppColor.white,
-        ),
-      ),
-      // Padding(
-      //   padding: EdgeInsets.only(right: 15),
-      //   child: Icon(
-      //     Icons.chat,
-      //     color: Colors.redAccent,
-      //   ),
-      // ),
-      // Padding(
-      //   padding: EdgeInsets.only(right: 15),
-      //   child: Icon(
-      //     Icons.group,
-      //     color: Colors.blueGrey,
-      //   ),
-      // ),
-      // Icon(
-      //   Icons.notifications,
-      //   color: Colors.blue,
-      // ),
-    ],
   );
 }

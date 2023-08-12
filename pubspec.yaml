@@ -55,6 +55,8 @@ dependencies:
   share_plus: ^7.1.0
   shared_preferences: ^2.2.0
   image: ^4.0.17
+  custom_marker: ^1.0.0
+  custom_map_markers: ^0.0.2+1
 
 dev_dependencies:
   flutter_lints: ^2.0.0

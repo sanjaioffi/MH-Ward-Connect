@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/sign_in/phone.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../controller/user_controller.dart';
 import '../../themes/app_colors.dart';
@@ -49,8 +50,7 @@ class _SettingsPageState extends State<SettingsPage> {
               String dob = userDetails['dob'] ?? '';
               String bloodGroup = userDetails['bloodGroup'] ?? '';
               String lastBloodDonated = userDetails['lastBloodDonated'] ?? '';
-              String phoneNumber =
-                  Get.find<AuthController>().uid!;
+              String phoneNumber = Get.find<AuthController>().uid!;
 
               return Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -178,7 +178,10 @@ class _SettingsPageState extends State<SettingsPage> {
                         "Logout",
                         style: TextStyle(color: Colors.red),
                       ),
-                      onTap: () {
+                      onTap: () async {
+                        final SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        prefs.remove('uid');
                         Get.to(Login());
                       },
                     ),

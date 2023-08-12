@@ -22,6 +22,12 @@ class PostIssueButton extends StatelessWidget {
                 ),
                 content: const Text('Do you want to proceed?'),
                 actions: <Widget>[
+                  TextButton(
+                    onPressed: () async {
+                      Navigator.of(context, rootNavigator: true).pop();
+                    },
+                    child: const Text('cancel'),
+                  ),
                   // Issue Pop Up
                   TextButton(
                     onPressed: () async {
@@ -47,12 +53,6 @@ class PostIssueButton extends StatelessWidget {
                       }
                     },
                     child: const Text('proceed'),
-                  ),
-                  TextButton(
-                    onPressed: () async {
-                      Navigator.of(context, rootNavigator: true).pop();
-                    },
-                    child: const Text('cancel'),
                   ),
                 ],
               );

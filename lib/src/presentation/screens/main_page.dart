@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/complaint/complaint_screen.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/home/home_screen.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/issue/view/issue.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/issue/view/issue_map.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/map/main_map.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/post/view/new_post.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/profile/profile_screen.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 
@@ -249,19 +253,24 @@ class MainScreenState extends State<MainScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              _buildOptionTile(Icons.flag_outlined, 'Post a Complaint', () {
+              _buildOptionTile(Icons.flag_outlined, 'Complaint through map',
+                  () {
                 // Handle post a complaint action
-                Navigator.pop(context); // Close the bottom sheet
+                Navigator.pop(context);
+                Get.to(MarkIssuePage());
               }),
-              _buildOptionTile(Icons.question_answer_outlined, 'Post a Query',
+              _buildOptionTile(
+                  Icons.question_answer_outlined, 'Complaint through community',
                   () {
                 // Handle post a query action
-                Navigator.pop(context); // Close the bottom sheet
+                Navigator.pop(context);
+                Get.to(NewPostScreen());
               }),
-              _buildOptionTile(Icons.star_border_outlined, 'Post a Milestone',
-                  () {
+              _buildOptionTile(
+                  Icons.star_border_outlined, 'Complaint through Whatsapp', () {
                 // Handle post a milestone action
-                Navigator.pop(context); // Close the bottom sheet
+                Navigator.pop(context);
+                Get.to(ComplaintScreen());
               }),
             ],
           ),

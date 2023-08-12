@@ -59,7 +59,7 @@ class PostButton extends StatelessWidget {
                         );
             },
             child: const Text(
-              "பதி",
+              "Share",
             ),
           ),
         );

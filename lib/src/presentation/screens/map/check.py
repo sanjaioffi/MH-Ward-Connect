@@ -24,21 +24,36 @@ def is_point_inside_polygon(point, polygon):
 
     return is_inside
 
+
+
+
+
+
+
+
+def find_polygon_for_user(user_location, polygons):
+    # Iterate through each polygon and check if the user's location is inside it
+    for i, polygon in enumerate(polygons):
+        if is_point_inside_polygon(user_location, polygon):
+            return i  # Return the index of the polygon the user is in
+
+    return None  # Return None if the user's location is not inside any polygon
+
 # Example usage:
-# Define the polygon using a list of latitude-longitude pairs
-polygon_coordinates = [    (9.933529503806852, 78.067547276781),
-    (9.915156704561568, 78.07835690230058),
-    (9.893442068699429, 78.06659348629313),
-    (9.897618071784379, 78.09393548025457),
-    (9.923194931065225, 78.09414743369615),
-    (9.927892504577699, 78.09594903794851),
-    (9.929980293391452, 78.09605501467018),
-    (9.933529503806852, 78.067547276781),]
+# Define the polygons using a list of lists of latitude-longitude pairs
+polygon1 = [(lat1, lon1), (lat2, lon2), (lat3, lon3), ...]
+polygon2 = [(lat4, lon4), (lat5, lon5), (lat6, lon6), ...]
+# ... and so on for other polygons
 
-# Define the point you want to check
-point_to_check = (9.930964593541809, 78.06885838508606)
+polygons_list = [polygon1, polygon2, ...]  # Add all your polygons to this list
 
+# Get the user's current location
+user_location = (user_lat, user_lon)
 
-# Check if the point is inside the polygon
-result = is_point_inside_polygon(point_to_check, polygon_coordinates)
-print(result)
+# Find the polygon the user is in
+result = find_polygon_for_user(user_location, polygons_list)
+
+if result is not None:
+    print(f"The user is inside Polygon {result + 1}.")
+else:
+    print("The user is not inside any polygon.")

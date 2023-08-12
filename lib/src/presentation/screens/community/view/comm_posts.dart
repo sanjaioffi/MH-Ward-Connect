@@ -40,7 +40,6 @@ class _CommunityPostScreenState extends State<CommunityPostScreen> {
           return Column(
             children: [
               const TopBar(),
-              const QuickLinks(),
               Expanded(
                 child: ListView.builder(
                   // reverse: true,

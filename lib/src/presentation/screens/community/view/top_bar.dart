@@ -34,7 +34,7 @@ class TopBar extends StatelessWidget {
                   ));
             },
             child: const Text(
-              "எண்ணங்களை பகிர்க",
+              "Share your thoughts...",
             ),
           )
         ],

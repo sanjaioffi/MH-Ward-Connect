@@ -53,7 +53,7 @@ class _PostContentState extends State<PostContent> {
           maxLines: 10,
           decoration: InputDecoration(
             border: InputBorder.none,
-            hintText: "எண்ணங்களை பகிர்க !",
+            hintText: "share your thoughts...",
             hintStyle: TextStyle(
               color: Colors.grey.shade600,
               fontWeight: FontWeight.w500,

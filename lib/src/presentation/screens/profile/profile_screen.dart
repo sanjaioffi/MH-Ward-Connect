@@ -56,6 +56,8 @@ class ProfileScreen extends StatelessWidget {
 
               String name = userDetails!['name'] ?? '';
               String address = userDetails['address'] ?? '';
+              String phoneNo = userDetails['phoneNo'] ?? '';
+
               String dob = userDetails['dob'] ?? '';
               String bloodGroup = userDetails['bloodGroup'] ?? '';
               String lastBloodDonated = userDetails['lastBloodDonated'] ?? '';
@@ -120,7 +122,7 @@ class ProfileScreen extends StatelessWidget {
                       height: 3,
                     ),
                     Text(
-                      'Emergency contact: ${_authController.uid!}',
+                      'Emergency contact: ${phoneNo}',
                       style: TextStyle(
                           color: AppColor.black,
                           fontSize: 18,
@@ -171,7 +173,7 @@ class ProfileScreen extends StatelessWidget {
                               child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              'Edit Profile',
+                              'Complaints',
                               style: TextStyle(
                                   color: AppColor.whatsAppTealGreen,
                                   fontSize: 15,

@@ -3,6 +3,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:madurai_ward_connect/src/constants/globals.dart';
 
+import '../presentation/screens/map/find_ward.dart';
+import '../presentation/screens/map/polygon_list.dart';
+
 class LocationController extends GetxController {
   RxBool isLoading = false.obs;
   RxString locationData = ''.obs;
@@ -12,6 +15,14 @@ class LocationController extends GetxController {
 
   void updateLocation(String location) {
     locationData.value = location;
+    update();
+  }
+
+  void updateCoordinates(List location) {
+    coordinates.value = location;
+    int wardNo =
+        findPolygonForUser(LatLng(location[0], location[1]), polygon_list_list);
+    updateWardNo(wardNo + 2);
     update();
   }
 
@@ -143,7 +154,110 @@ class LocationController extends GetxController {
   }
 
   void updateWardNo(int ward) {
+    List<String> wardNames = [
+      'Santhi Nagar',
+      'Koodal Nagar',
+      'Anaiyur',
+      'Sambandhar Alankulam',
+      'B.B.Kulam',
+      'Meenambalpuram',
+      'Kailaasapuram',
+      'Vilangudi',
+      'Thathaneri',
+      'Aarappalayam',
+      'Ponnaharam',
+      'Krishnaapalayam',
+      'Azhagaradi',
+      'Viswasapuri',
+      'Melapponnaharam',
+      'Railway Colony',
+      'Ellis Nagar',
+      'S.S.Colony',
+      'Ponmeni',
+      'Arasaradi Othakkadai',
+      'Bethaniyapuram',
+      'Kochadai',
+      'Visalakshi Nagar',
+      'Thiruppaalai',
+      'Kannanendhal',
+      'Parasuraamanpatti',
+      'Karpaga Nagar',
+      'Uthangudi',
+      'Masthaanpatti',
+      'Melamadai',
+      'Tahsildhar Nagar',
+      'Vandiyur',
+      'Saathamangalam',
+      'Arignar Anna Nagar',
+      'Madhichiyam',
+      'Aazhwarpuram',
+      'Sellur',
+      'Pandhalkudi',
+      'Goripalayam',
+      'Ahimsapuram',
+      'Narimedu',
+      'Chokkikulam',
+      'Tallakulam',
+      'K.K.Nagar',
+      'Pudur',
+      'Lourdhu Nagar',
+      'Reserve Line',
+      'Aathikulam',
+      'Naahanakulam',
+      'Swami Sannidhi',
+      'Ismailpuram',
+      'Sourashtra Hr. Sec. School',
+      'Pangajam Colony',
+      'Mariamman Theppakulam',
+      'Iraavadhanallur',
+      'Sinna Anuppanadi',
+      'Anuppanadi',
+      'Chinthamani',
+      'Meenakshi Nagar',
+      'Avaniyaapuram',
+      'Villapuram Pudhu Nagar',
+      'Kathirvel Nagar',
+      'Villaapuram',
+      'Keeraithurai',
+      'Sappani Kovil',
+      'South Krishnan Kovil',
+      'Manjanakara Street',
+      'Dhrowpathi Amman Kovil',
+      'St.Marys',
+      'Kaamarajapuram',
+      'Balaranganathapuram',
+      'Navarathinapuram',
+      'Lakshmipuram',
+      'Thirumalai Naicker Mahal',
+      'Maadakkulam',
+      'Pazhangaanatham',
+      'Sundarajapuram',
+      'Madurai Baskaradass Nagar',
+      'Perumal Theppakulam',
+      'Krishnarayar Theppakulam',
+      'Tamilsangam',
+      'Sokkanadhar Kovil',
+      'North Krishnan Kovil',
+      'Meenakshi Kovil',
+      'Jadamuni Kovil',
+      'Kaajimar Street',
+      'Subramaniapuram',
+      'Solai Azhagupuram',
+      'Jaihindpuram',
+      'Veerakali Amman Kovil',
+      'Thennaharam',
+      'Kovalan Nagar',
+      'T.V.S.Nagar',
+      'Paamban Swami Nagar',
+      'Mannar College',
+      'Thirupparamkundram',
+      'Haarvipatti',
+      'Thirunahar',
+      'Balaji Nagar',
+      'Muthuramalingapuram',
+    ];
     wardNo.value = ward;
+    updateLocation(wardNames[ward - 1]);
     // print(wardNo.value);
     updateZone();
     update();
@@ -177,9 +291,9 @@ class LocationController extends GetxController {
       locationData.value =
           '${currentLocation.latitude} <-> ${currentLocation.longitude}';
 
-      coordinates.value = [currentLocation.latitude, currentLocation.longitude];
+      updateCoordinates([currentLocation.latitude, currentLocation.longitude]);
 
-      myLocation =
+    myLocation =
           LatLng(currentLocation.latitude!, currentLocation.longitude!);
 
       isLoading.value = false;

@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:madurai_ward_connect/src/controller/location_controller.dart';
 
 import '../../../../controller/user_controller.dart';
 
 class IssueController extends GetxController {
   RxString submitButton = "Post Issue".obs;
+  String user_name = Get.find<AuthController>().userName!;
   RxInt complaintType = 0.obs;
   var locationCoordinates = const LatLng(1, 2).obs;
   RxString mapMarker = "Value".obs;
@@ -32,9 +34,9 @@ class IssueController extends GetxController {
       // Data you want to add to the document
       Map<String, dynamic> data = {
         'complaint_type': complaintType.value,
-        'post_username': Get.find<AuthController>().userName,
-        'latitude': locationCoordinates.value.latitude,
-        'longitude': locationCoordinates.value.longitude,
+        'post_username': 'Sanjai Prabhakaran',
+        'latitude': Get.find<LocationController>().coordinates[0],
+        'longitude': Get.find<LocationController>().coordinates[1],
         'status': 0,
       };
 

@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String notificationText =
       "CityConnect is your go-to app for staying informed and engaged with everything happening in our wonderful city. Whether you're a resident, visitor, or local business, this app is designed to keep you connected to the heartbeat of our community.";
 
-  TextEditingController wardName = TextEditingController();
+  // TextEditingController wardName = TextEditingController();
   List zoneList = [
     'EAST - ZONE I',
     'NORTH - ZONE II',
@@ -144,11 +144,6 @@ class _HomeScreenState extends State<HomeScreen> {
     'SOUTH - ZONE IV',
     'WEST - ZONE V'
   ];
-  @override
-  void dispose() {
-    super.dispose();
-    wardName.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -451,7 +446,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             InkWell(
                               borderRadius: BorderRadius.circular(30),
                               onTap: () {
-                                Get.to(() => BloodBankScreen());
+                                Get.to(() => BloodGroupUsersScreen());
                               },
                               child: CircleAvatar(
                                   backgroundColor: AppColor.winterGreen,
