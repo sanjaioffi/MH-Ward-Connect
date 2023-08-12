@@ -4,6 +4,7 @@ import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:madurai_ward_connect/src/controller/user_controller.dart';
+import 'package:madurai_ward_connect/src/presentation/screens/profile/get_complaints.dart';
 import 'package:madurai_ward_connect/src/presentation/screens/settings_screen/settings_screen.dart';
 import 'package:madurai_ward_connect/src/presentation/themes/app_colors.dart';
 
@@ -14,7 +15,10 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cordinates = [];
     final AuthController _authController = Get.find();
+    CollectionReference collectionReference =
+        FirebaseFirestore.instance.collection('issues');
 
     int Badges = 5; // Replace with actual following count
     return SafeArea(
@@ -57,7 +61,7 @@ class ProfileScreen extends StatelessWidget {
               String name = userDetails!['name'] ?? '';
               String address = userDetails['address'] ?? '';
               String phoneNo = userDetails['phoneNo'] ?? '';
-
+              List complaints = userDetails['complaints'] ?? [];
               String dob = userDetails['dob'] ?? '';
               String bloodGroup = userDetails['bloodGroup'] ?? '';
               String lastBloodDonated = userDetails['lastBloodDonated'] ?? '';
@@ -182,7 +186,25 @@ class ProfileScreen extends StatelessWidget {
                           )),
                         ),
                       ),
-                    )
+                    ),
+
+                    IconButton(
+                        onPressed: () async {
+                          for (var element in complaints) {
+                            cordinates.add(await returnStatus(element));
+                          }
+                        },
+                        icon: Icon(Icons.refresh)),
+
+                    ListView.builder(
+                      itemCount: cordinates.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                            title: Text(
+                          "Status : ${statusMap[cordinates[index]]}",
+                        ));
+                      },
+                    ),
                   ],
                 ),
               );
@@ -206,3 +228,11 @@ class ProfileScreen extends StatelessWidget {
         .snapshots();
   }
 }
+
+const statusMap = {
+  0: "Submmited",
+  1: "Reviewed",
+  2: "IN progress",
+  3: "Resolved",
+  4: "Suspended",
+};

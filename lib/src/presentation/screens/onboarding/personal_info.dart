@@ -357,6 +357,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         'bloodGroup': bloodGroup,
         'lastBloodDonated': lastBloodDonated,
         'phoneNo': phone,
+        'complaints' : [],
         'posts': []
       });
     } catch (e) {

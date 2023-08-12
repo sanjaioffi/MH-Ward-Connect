@@ -11,8 +11,12 @@ bool isPointInsidePolygon(List<LatLng> polygon, LatLng point) {
     LatLng vertex1 = polygon[i];
     LatLng vertex2 = polygon[(i + 1) % numVertices];
 
-    if ((vertex1.latitude < lat && lat <= vertex2.latitude) || (vertex2.latitude < lat && lat <= vertex1.latitude)) {
-      double lonIntersect = (vertex1.longitude + (lat - vertex1.latitude) * (vertex2.longitude - vertex1.longitude) / (vertex2.longitude - vertex1.latitude));
+    if ((vertex1.latitude < lat && lat <= vertex2.latitude) ||
+        (vertex2.latitude < lat && lat <= vertex1.latitude)) {
+      double lonIntersect = (vertex1.longitude +
+          (lat - vertex1.latitude) *
+              (vertex2.longitude - vertex1.longitude) /
+              (vertex2.longitude - vertex1.latitude));
 
       if (lon <= lonIntersect) {
         isInside = !isInside;
@@ -29,7 +33,7 @@ int findPolygonForUser(LatLng userLocation, List<List<LatLng>> polygons) {
       return i;
     }
   }
-  return 0;
+  return 94;
 }
 
 // void main() {

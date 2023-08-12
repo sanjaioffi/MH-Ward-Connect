@@ -31,6 +31,9 @@ class IssueController extends GetxController {
       CollectionReference collection =
           FirebaseFirestore.instance.collection('issues');
 
+      CollectionReference userCollection =
+          FirebaseFirestore.instance.collection('users');
+
       // Data you want to add to the document
       Map<String, dynamic> data = {
         'complaint_type': complaintType.value,
@@ -38,12 +41,19 @@ class IssueController extends GetxController {
         'latitude': Get.find<LocationController>().coordinates[0],
         'longitude': Get.find<LocationController>().coordinates[1],
         'status': 0,
+        'wardNo': 96,
       };
 
       // Add a new document with a generated ID
-      await collection.add(data);
+      await collection.add(data).then((value) async{
+        await userCollection.doc(Get.find<AuthController>().uid).update({
+        'complaints': FieldValue.arrayUnion([value.id])
+      });
+      });
       complaintType.value = 0;
       locationCoordinates.value = const LatLng(1, 2);
+      
+
       return true;
     } catch (e) {
       return false;

@@ -41,6 +41,7 @@ class _MainMapScreenState extends State<MainMapScreen> {
     _customMarkers = [
       MarkerData(
           marker: Marker(
+              infoWindow: InfoWindow(title: wardNames[1 - 1]),
               markerId: const MarkerId('id-1'),
               position: _getPolygonCenter(ward1)),
           child: _customMarker3('1', Colors.blue)),
@@ -49,94 +50,108 @@ class _MainMapScreenState extends State<MainMapScreen> {
               onDragEnd: (_) {
                 Get.find<LocationController>()
                     .updateCoordinates([_.latitude, _.longitude]);
-                   
               },
               draggable: true,
-              markerId: const MarkerId('Mian'),
+              markerId: const MarkerId('Main'),
               position: LatLng(Get.find<LocationController>().coordinates[0],
                   Get.find<LocationController>().coordinates[1])),
           child: _customMarker('Main Marker', Colors.blue)),
       MarkerData(
           marker: Marker(
+              infoWindow: InfoWindow(title: wardNames[3 - 1]),
               markerId: const MarkerId('id-1'),
               position: _getPolygonCenter(ward3)),
           child: _customMarker3('3', Colors.blue)),
       MarkerData(
           marker: Marker(
+              infoWindow: InfoWindow(title: wardNames[4 - 1]),
               markerId: const MarkerId('id-1'),
               position: _getPolygonCenter(ward4)),
           child: _customMarker3('4', Colors.blue)),
       MarkerData(
           marker: Marker(
+              infoWindow: InfoWindow(title: wardNames[5 - 1]),
               markerId: const MarkerId('id-1'),
               position: _getPolygonCenter(ward5)),
           child: _customMarker3('5', Colors.blue)),
       MarkerData(
           marker: Marker(
+              infoWindow: InfoWindow(title: wardNames[6 - 1]),
               markerId: const MarkerId('id-1'),
               position: _getPolygonCenter(ward6)),
           child: _customMarker3('6', Colors.blue)),
       MarkerData(
           marker: Marker(
+              infoWindow: InfoWindow(title: wardNames[7 - 1]),
               markerId: const MarkerId('id-1'),
               position: _getPolygonCenter(ward7)),
           child: _customMarker3('7', Colors.blue)),
       MarkerData(
           marker: Marker(
+              infoWindow: InfoWindow(title: wardNames[8 - 1]),
               markerId: const MarkerId('id-1'),
               position: _getPolygonCenter(ward8)),
           child: _customMarker3('8', Colors.blue)),
       MarkerData(
           marker: Marker(
+              infoWindow: InfoWindow(title: wardNames[9 - 1]),
               markerId: const MarkerId('id-1'),
               position: _getPolygonCenter(ward9)),
           child: _customMarker3('9', Colors.blue)),
       MarkerData(
           marker: Marker(
+              infoWindow: InfoWindow(title: wardNames[10 - 1]),
               markerId: const MarkerId('id-1'),
               position: _getPolygonCenter(ward10)),
           child: _customMarker3('10', Colors.blue)),
       MarkerData(
           marker: Marker(
+              infoWindow: InfoWindow(title: wardNames[11 - 1]),
               markerId: const MarkerId('id-1'),
               position: _getPolygonCenter(ward11)),
           child: _customMarker3('11', Colors.blue)),
       MarkerData(
           marker: Marker(
+              infoWindow: InfoWindow(title: wardNames[12 - 1]),
               markerId: const MarkerId('id-1'),
-              infoWindow: InfoWindow(title: '12'),
               position: _getPolygonCenter(ward12)),
           child: _customMarker3('12', Colors.blue)),
       MarkerData(
           marker: Marker(
               markerId: const MarkerId('id-5'),
-              infoWindow: InfoWindow(title: '13'),
+              infoWindow: InfoWindow(title: wardNames[13 - 1]),
               position: _getPolygonCenter(ward13)),
           child: _customMarker3('13', Colors.black)),
       MarkerData(
           marker: Marker(
-              infoWindow: InfoWindow(title: '14'),
+              infoWindow: InfoWindow(title: wardNames[14 - 1]),
               markerId: const MarkerId('id-2'),
               position: _getPolygonCenter(ward14)),
           child: _customMarker3('14', Colors.red)),
       MarkerData(
           marker: Marker(
-              infoWindow: InfoWindow(title: '16'),
+              infoWindow: InfoWindow(title: wardNames[16 - 1]),
               markerId: const MarkerId('id-3'),
               position: _getPolygonCenter(ward16)),
           child: _customMarker3('16', Colors.green)),
       MarkerData(
           marker: Marker(
-              infoWindow: InfoWindow(title: '17'),
+              infoWindow: InfoWindow(title: wardNames[17 - 1]),
               markerId: const MarkerId('id-4'),
               position: _getPolygonCenter(ward17)),
           child: _customMarker3('17', Colors.purple)),
       MarkerData(
           marker: Marker(
-              infoWindow: InfoWindow(title: '18'),
+              infoWindow: InfoWindow(title: wardNames[18 - 1]),
               markerId: const MarkerId('id-5'),
               position: _getPolygonCenter(ward18)),
           child: _customMarker3('18', Colors.blue)),
+      MarkerData(
+          marker: Marker(
+              infoWindow: InfoWindow(title: wardNames[96 - 1]),
+              markerId: const MarkerId('id-5'),
+              position: _getPolygonCenter(ward97)),
+          child: _customMarker3('96', Colors.blue)),
     ];
   }
 
@@ -224,7 +239,7 @@ class _MainMapScreenState extends State<MainMapScreen> {
                   Get.find<LocationController>().coordinates[0],
                   Get.find<LocationController>().coordinates[1],
                 ),
-                zoom: 20),
+                zoom: 15),
             markers: markers,
             polygons: {
               Polygon(
@@ -336,6 +351,11 @@ class _MainMapScreenState extends State<MainMapScreen> {
               Polygon(
                   polygonId: PolygonId('57'),
                   points: ward57,
+                  strokeWidth: 2,
+                  fillColor: getRandomColor().withOpacity(0.5)),
+              Polygon(
+                  polygonId: PolygonId('97'),
+                  points: ward97,
                   strokeWidth: 2,
                   fillColor: getRandomColor().withOpacity(0.5))
             },
