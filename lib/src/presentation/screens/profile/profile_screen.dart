@@ -208,19 +208,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: ListView.builder(
                         itemCount: cordinates.length,
                         itemBuilder: (context, index) {
+                          // if (index == 0) return null;
                           return Expanded(
-                            child: Container(
-                              height: 290,
-                              width: 100,
-                              color: Colors.green,
-                            ),
-                            // child: ListTile(
-                            //     title: Text(
-                            //   "Status : ${statusMap[cordinates[index]]}",
-                            //   style: const TextStyle(
-                            //     color: Colors.black,
-                            //   ),
-                            // )),
+                            if 
+                            child: ListTile(
+                                title: Text(
+                              "Complaint $index : ${statusMap[cordinates[index]]}",
+                              style: const TextStyle(
+                                color: Colors.black,
+                              ),
+                            )),
                           );
                         },
                       ),
